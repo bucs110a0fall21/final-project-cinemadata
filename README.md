@@ -21,6 +21,14 @@ This is a program that takes user input (genre(s), ratings, etc.) and using the 
 
 ## User Interface Design *(Front End Specialist)*
 * << A wireframe or drawing of the user interface concept along with a short description of the interface. You should have one for each screen in your program. >>
+* ![class diagram](assets/GUI%20First%20Page.png)
+* Main Menu Screen
+* ![class diagram](assets/GUI%20Second%20Page.png)
+* Second Screen
+* ![class diagram](assets/GUI%20Third%20Page%20(addon).png)
+* Third Screen
+* ![class diagram](assets/GUI%20Fourth%20Page.png)
+* Fourth Screen
     * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
 * << You should also have a screenshot of each screen for your final GUI >>
 
