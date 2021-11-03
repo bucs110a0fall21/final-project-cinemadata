@@ -59,11 +59,11 @@ The Project is broken down into the following file structure:
 
 << Worked as integration specialist by... >>
 
-### Front End Specialist - << name >>
+### Front End Specialist - Wilson Huang
 
 << Front-end lead conducted significant research on... >>
 
-### Back End Specialist - << name >>
+### Back End Specialist - Daniel Zheng
 
 << The back end specialist... >>
 
