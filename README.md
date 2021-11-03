@@ -1,21 +1,21 @@
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 # CS110 Project Proposal
-# << Project Title >>
+# Movie Recommender
 ## CS 110 Final Project
-### << Semester, Year >>
+### Fall, 2021
 ### [Assignment Description](https://docs.google.com/document/d/1H4R6yLL7som1lglyXWZ04RvTp_RvRFCCBn6sqv-82ps/edit#)
 
-<< [https://github.com/<repo>](#) >>
+[https://github.com/bucs110a0fall21/final-project-cinemadata](#)
 
 << [link to demo presentation slides](#) >>
 
-### Team: << team name >>
-#### << Team Members >>
+### Team: CinemaData
+#### Daniel Zheng, Wilson Huang, Kevin Wu
 
 ***
 
 ## Project Description *(Software Lead)*
-<< Give an overview of your project >>
+This is a program that takes user input (genre(s), ratings, etc.) and using the inputted filters, sends a request to the an API for films that have the attributes given by the user. It displays the movies in a graphical interface and the user is able to click on the "More Info" button to get a detailed description of the movie as well as where to buy, stream, or display if the movie is currently in theaters.
 
 ***    
 
