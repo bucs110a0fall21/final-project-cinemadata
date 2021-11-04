@@ -20,17 +20,32 @@ This is a program that takes user input (genre(s), ratings, etc.) and using the 
 ***    
 
 ## User Interface Design *(Front End Specialist)*
-* << A wireframe or drawing of the user interface concept along with a short description of the interface. You should have one for each screen in your program. >>
 * ![class diagram](assets/GUI%20First%20Page.png)
 * Main Menu Screen
+* Contains:
+* Selection dropdown box
+* Scrolling screen(scroll wheel is wish feature)
+* Search button
+* Remove button
+* Selectable genres for the movie
 * ![class diagram](assets/GUI%20Second%20Page.png)
-* Second Screen
-* ![class diagram](assets/GUI%20Third%20Page%20(addon).png)
-* Third Screen
-* ![class diagram](assets/GUI%20Fourth%20Page.png)
-* Fourth Screen
-    * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
-* << You should also have a screenshot of each screen for your final GUI >>
+* Second Screen (Recommended movies)
+* Contains:
+* Poster for movies
+* Back button
+* Select button
+* Scrolling screen
+* More info button
+* ![class diagram](assets/GUI%20Third%20Page.png)
+* Third Screen (Watchlist add-on)
+* Contains:
+* List of all the movies the user selected
+* ![class diagram](assets/GUI%20Fourth%20Page%20(addon)%20(1).png)
+* Fourth Screen (More info screen)
+* Contains:
+* Information gathered from API about specific movie
+* Also includes the previous back and scroll wheel
+
 
 ***        
 
