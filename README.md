@@ -57,11 +57,11 @@ This is a program that takes user input (genre(s), ratings, etc.) and using the 
         * This module is used to create the "view" or visuals of the project.
 * Class Interface Design
     * Main Menu (Screen 1)
-    ![class diagram](assets\Class_screen_1.jpg)
+    ![class diagram](assets/Class_screen_1.jpg)
     * Search Results (Screen 2)
-    ![class diagram](assets\Class_screen_2.jpg)
+    ![class diagram](assets/Class_screen_2.jpg)
     * Movie Details (Screen 3)
-    ![class diagram](assets\Class_screen_3.jpg)
+    ![class diagram](assets/Class_screen_3.jpg)
 * Classes
     * Main Menu
         * Models 
