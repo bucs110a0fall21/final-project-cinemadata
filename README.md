@@ -51,16 +51,50 @@ This is a program that takes user input (genre(s), ratings, etc.) and using the 
 
 ## Program Design *(Backend Specialist)*
 * Non-Standard libraries
-    * << You should have a list of any additional libraries or modules used (pygame, request) beyond non-standard python. >>
-    * For each additional module you should include
-        * url for the module documentation
-        * a short description of the module
+    * (pygame)
+    * Pygame
+        * Documentation:  https://www.pygame.org/docs/
+        * This module is used to create the "view" or visuals of the project.
 * Class Interface Design
-    * << A simple drawing that shows the class relationships in your code (see below for an example). >>
-        * ![class diagram](assets/class_diagram.jpg)
-    * This does not need to be overly detailed, but should show how your code fits into the Model/View/Controller paradigm.
+    * Main Menu (Screen 1)
+    ![class diagram](assets\Class_screen_1.jpg)
+    * Search Results (Screen 2)
+    ![class diagram](assets\Class_screen_2.jpg)
+    * Movie Details (Screen 3)
+    ![class diagram](assets\Class_screen_3.jpg)
 * Classes
-    * << You should have a list of each of your classes with a description. >>
+    * Main Menu
+        * Models 
+            * GenreList - creates a list of movie genres and determines their selection status
+            * GenreChosen - list of selected genres and option to remove genre from list
+            * Select - confirms selection of genres and add them to the list of selected genres
+            * SearchButton - searches for movies based on selected genres
+        * Controller
+            * Search - creates the screen and determines what if a search can be made based on user input
+        * View
+            * Managed by pygame, TBD
+    * Search Results (Screen 2)
+        * Models 
+            * BackButton - goes back to main menu
+            * MoreInfoButton - changes screen to show more information on a movie (goes to screen 3)
+            * SelectButton - adds movie to movie list
+            * ScrollWheel - changes position of screen based on user input
+            * MovieInfo - gets movie information for all recommended movies
+        * Controller
+            * Recommendations - creates screen 2 and determines if buttons are pressed, calls certain class methods depending on the button pressed
+        * View
+            * Managed by pygame, TBD
+    * More Info Screen (Screen 3)
+        * Models 
+            * MoviePage - detailed data of selected movie
+            * ScrollWheel - (same as screen 2)
+            * BackButton - goes back to screen 2
+        * Controller
+            * ExpandedMovieInfo - creates page with movie's rating, description, poster, availability, etc. and checks to see if back button or scroll wheel are pressed
+        * View
+            * Managed by pygame, TBD
+    
+    
 
 ## Project Structure *(Software Lead)*
 
