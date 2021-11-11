@@ -10,6 +10,7 @@ class Button:
         self.image = pygame.image.load(img_file).convert_alpha()
         self.status = False
     
-    def update(self, x, y):
+    def update(self, x, y, status):
         self.x = x
         self.y = y
+        self.status = status
