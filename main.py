@@ -7,6 +7,4 @@ def main():
 	print("Software Lead is:", team["lead"])
 	print("Backend is:", team["backend"])
 	print("Frontend is:", team["frontend"])
-	screen = controller.Controller()
-	test = button.Button("test", 100, 100, "assets/class_diagram.jpg")
 main()
