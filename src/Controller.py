@@ -18,7 +18,7 @@ class Controller:
         logopng = pygame.image.load('assets/screenlogo.png')  # loading logo on screen
         self.screen.blit(logopng, (377, 0))
         databasepng = pygame.image.load('assets/moviedb.png')  # loading logo on screen
-        self.screen.blit(databasepng, (1000, 600))
+        self.screen.blit(databasepng, (1000, 0))
 
         self.select_button = Button.Button(10, 10, "assets/selectbutton.png", 1)
 
