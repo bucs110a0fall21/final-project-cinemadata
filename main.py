@@ -9,5 +9,5 @@ def main():
 	print("Frontend is:", team["frontend"])
 
 	main_window = Controller.Controller()
-	main_window.mainLoop()
+	main_window.mainloop()
 main()
