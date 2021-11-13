@@ -136,4 +136,4 @@ Created the Button class and methods within it, as well as the APIrequest class 
 | ----------------------|:-------------:| -----------------:| -------------- |
 |  1  | Run Counter Program  | GUI window appears with count = 0  |          |
 |  2  | click count button  | display changes to count = 1 |                 |
-etc...
+|  3  |
