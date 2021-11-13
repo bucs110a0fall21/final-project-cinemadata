@@ -6,9 +6,10 @@ class Button:
 
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(img_file).convert_alpha()
-        width = self.image.get_width()
-        height = self.image.get_height()
-        self.scaled = pygame.transform.scale(self.image, (int(width*scale), int(height*scale)))
+        self.scale = scale
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
+        self.scaled = pygame.transform.scale(self.image, (int(self.width * self.scale), int(self.height * self.scale)))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
