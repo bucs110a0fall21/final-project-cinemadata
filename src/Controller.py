@@ -26,6 +26,3 @@ class Controller:
         while self.state == "Main screen":
             self.gameEventLoop()
             self.Button.update()
-
-
-

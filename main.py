@@ -1,5 +1,5 @@
 import pygame
-from src import controller
+from src import Controller
 
 def main():
 	pygame.init()
@@ -8,6 +8,6 @@ def main():
 	print("Backend is:", team["backend"])
 	print("Frontend is:", team["frontend"])
 
-	main_window = controller.Controller()
+	main_window = Controller.Controller()
 	main_window.mainLoop()
 main()
