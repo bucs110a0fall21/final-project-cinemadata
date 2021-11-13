@@ -40,6 +40,8 @@ class Controller:
             pygame.display.update()
     def gameEventLoop(self):
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.select_button
             elif event.type == pygame.KEYDOWN:
