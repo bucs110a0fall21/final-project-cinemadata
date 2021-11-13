@@ -1,21 +1,21 @@
 import pygame
 import sys
-from src import button
-from src import genre
+from src import Button
+from src import List
 
 t = True
 
 # test to see if I can change the values
 pygame.init()
 pygame.display.set_mode((600, 600))
-testButton = button.Button(3, 4, "assets/class_diagram.jpg")
-print(testButton.x, testButton.y)
+testButton = Button.Button(3, 4, "assets/class_diagram.jpg", 1)
+print(testButton.rect.x, testButton.rect.y)
 # test to see if I can change the values
 
 #test to see if adding and removing genres to the list(genre class) works
 
 testButton.genreButton("Action")    #gives the test button a genre       
-testGenre = genre.Genre()   #creates a genre list
+testGenre = List.Genre()   #creates a genre list
 
 testButton.selected()   #makes the status of test button as selected
 testGenre.addRemove(testButton.genre, testButton.status)    #adds genre to list

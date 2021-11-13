@@ -11,7 +11,7 @@ class Controller:
         self.screen = pygame.display.set_mode((self.window_height, self.window_width))
         self.background = pygame.Surface((self.window_height, self.window_width))
         self.background.fill(173, 216, 230)
-        self.select_button = button.Button(x, y, "assets/selectbutton.png")
+        self.select_button = Button.Button(x, y, "assets/selectbutton.png")
 
     def mainloop(self):
         while self.state:
