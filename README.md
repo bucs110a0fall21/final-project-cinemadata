@@ -100,8 +100,10 @@ This is a program that takes user input (genre(s), ratings, etc.) and using the 
 
 The Project is broken down into the following file structure:
 * main.py
-* bin
-    * <all of your python files should go here>
+* src
+    * Button.py
+    * Controller.py
+    * Genre.py
 * assets
     * <all of your media, i.e. images, font files, etc, should go here)
 * etc
@@ -114,15 +116,15 @@ The Project is broken down into the following file structure:
 
 ### Software Lead - Kevin Wu
 
-<< Worked as integration specialist by... >>
+Integrated the button, and APIrequest classes into the GUI, cleaned up code where needed, and helped with fixing various bugs.
 
 ### Front End Specialist - Wilson Huang
 
-<< Front-end lead conducted significant research on... >>
+Created the scrolling feature and the main screen. Worked collaboratively with back-end to create the Select, Genre, Search, Back, and More Info buttons. 
 
 ### Back End Specialist - Daniel Zheng
 
-<< The back end specialist... >>
+Created the Button class and methods within it, as well as the APIrequest class along with the methods in it. 
 
 ## Testing *(Software Lead)*
 * << Describe your testing strategy for your project. >>
