@@ -3,11 +3,11 @@ import sys
 from src import button
 from src import genre
 
-t=True
+t = True
 
 # test to see if I can change the values
 pygame.init()
-pygame.display.set_mode((600,600))
+pygame.display.set_mode((600, 600))
 testButton = button.Button(3, 4, "assets/class_diagram.jpg")
 print(testButton.x, testButton.y)
 # test to see if I can change the values
@@ -27,11 +27,11 @@ print(testGenre.selected_genres)    #prints out list
 
 # test to see if the list works
 for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+    if event.type == pygame.QUIT:
+        sys.exit()
 #test to see if continous list works
 while True:
-    state =input("selected?")
+    state = input("selected?")
     if state == 'true' or state == 'True':
         #there is a problem with having an else here because 
         #that would continously remove the genre if false which results in an error
