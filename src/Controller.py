@@ -6,12 +6,12 @@ from src import Button
 class Controller:
     def __init__(self):
         #setting up pygame data/screen
-        self.window_height = 600
-        self.window_width = 600
+        self.window_height = 720
+        self.window_width = 1280
         self.state = "Main screen"
         pygame.init()
-        self.screen = pygame.display.set_mode((self.window_height, self.window_width))
-        self.background = pygame.Surface((self.window_height, self.window_width))
+        self.screen = pygame.display.set_mode((self.window_width, self.window_height))
+        self.background = pygame.Surface((self.window_width, self.window_height))
 
         self.background.fill([173, 216, 230])
         self.select_button = Button.Button(10, 10, "assets/selectbutton.png", 1)
