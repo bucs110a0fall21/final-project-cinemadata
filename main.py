@@ -10,4 +10,7 @@ def main():
 
 	main_window = Controller.Controller()
 	main_window.mainLoop()
+	# while controller.running:    # while the program is running(self.playing is true) it will run gameLoop
+	# 	controller = Controller()
+	# 	controller.gameLoop()
 main()
