@@ -1,14 +1,17 @@
 import pygame
 
 class Button:
-    def __init__(self, x, y, img_file):
+    def __init__(self, x, y, img_file, scale):
         #initiates the button values
 
         pygame.sprite.Sprite.__init__(self)
-
-        self.x = x
-        self.y = y
         self.image = pygame.image.load(img_file).convert_alpha()
+        width = self.image.get_width()
+        height = self.image.get_height()
+        self.scaled = pygame.transform.scale(self.image, (int(width*scale), int(height*scale)))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
         self.status = False
         self.genre = ''
 
@@ -28,6 +31,6 @@ class Button:
 
     def update(self, x, y, status):
         #updates the position of the button and status if needed
-        self.x = x
-        self.y = y
+        self.rect.x = x
+        self.rect.y = y
         self.status = status
