@@ -1,7 +1,7 @@
 import pygame
 
 class Button:
-    def __init__(self, x, y, img_file, scale):
+    def __init__(self, x, y, img_file, scale, text):
         #initiates the button values
 
         pygame.sprite.Sprite.__init__(self)
@@ -14,12 +14,7 @@ class Button:
         self.rect.x = x
         self.rect.y = y
         self.status = False
-        self.genre = ''
-
-    def genreButton(self, genre):
-        #Add a genre to the button if it is a genre
-        self.genre = genre
-        #Genre is not included as a parameter in the init so that buttons that are not genre buttons dont need to have a genre parameter
+        self.label = text
 
     def selected(self):
         #changes status of the button to True(selected) or False(unselected), based on current status and returns that value

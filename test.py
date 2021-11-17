@@ -44,6 +44,6 @@ from src import List
 #         print(testGenre.selected_genres)
 # #test to see if continous list works
 
-###Tests part 2(api requests)###
-y = List.Genre()
-print(y.all_genres)
+# ###Tests part 2(api requests)###
+# y = List.Genre()
+# print(y.all_genres)

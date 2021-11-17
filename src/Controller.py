@@ -28,19 +28,19 @@ class Controller:
         databasepng = pygame.image.load('assets/moviedb.png')
         self.screen.blit(databasepng, (1000, 0))
 
-        self.searchbutton = Button.Button(100, 109, "assets/searchbutton.png", 1)
+        self.searchbutton = Button.Button(100, 109, "assets/searchbutton.png", 1, 'search')
         searchbutton = pygame.image.load('assets/searchbutton.png')
         self.screen.blit(searchbutton, (1050, 600))
 
-        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1)
+        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1, 'genre')
         buttonicon = pygame.image.load('assets/buttonicon.png')
         self.screen.blit(buttonicon, (10, 100))
 
-        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1)
+        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1, 'genre')
         buttonicon = pygame.image.load('assets/buttonicon.png')
         self.screen.blit(buttonicon, (10, 200))
 
-        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1)
+        self.buttonicon = Button.Button(100, 109, "assets/buttonicon.png", 1, 'genre')
         buttonicon = pygame.image.load('assets/buttonicon.png')
         self.screen.blit(buttonicon, (10, 300))
 
