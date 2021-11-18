@@ -16,6 +16,7 @@ class Controller:
         self.screen.fill((130, 210, 220)) #background color
         self.genre_list = pygame.sprite.Group()
         self.clicked = False
+        self.user_genre_list = []
 
         #first screen
         genreList = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary"]  # placeholder list, use API to request for the list
@@ -55,13 +56,16 @@ class Controller:
                         sys.exit()
                     elif self.search_button.rect.collidepoint(event.pos):
                         self.state = "SECOND"
-                    #WIP
                     for button in self.genre_list:
                         if button.rect.collidepoint(event.pos):
                             if pygame.mouse.get_pressed()[0] == 1:
                                 self.clicked = True
+                                if button.label in self.user_genre_list:
+                                    pass
+                                else:
+                                    self.user_genre_list.append(button.label)
                                 print(button.label)
-
+                                print(self.user_genre_list)
 
 
             pygame.display.flip()
