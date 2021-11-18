@@ -118,13 +118,20 @@ class Controller:
                 if event.type == pygame.KEYDOWN:
                     if(event.key == pygame.K_UP):
                         self.buttonicon.update(100,200,False)
+                    if(event.key == pygame.K_DOWN):
+                        self.buttonicon.update(100,300,False)
 
 
             # update the screen
-            pygame.display.get_surface()
-            self.screen.fill([200,200,200])
+            self.screen.fill((130, 210, 220)) #RGB colors
+
+            logopng = pygame.image.load('assets/screenlogo.png')  # loading logo on screen
+            self.screen.blit(logopng, (377, 0))
+
+            databasepng = pygame.image.load('assets/moviedb.png')
+            self.screen.blit(databasepng, (1000, 0))
             self.screen.blit(self.buttonicon.image, (self.buttonicon.rect.x, self.buttonicon.rect.y))
-            pygame.display.update()
+            pygame.display.flip()
 
     def check_events(self):
         for event in pygame.event.get():
