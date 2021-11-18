@@ -58,11 +58,10 @@ class Controller:
                     #WIP
                     for button in self.genre_list:
                         if button.rect.collidepoint(event.pos):
-                            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                            if pygame.mouse.get_pressed()[0] == 1:
                                 self.clicked = True
-                                print("Clicked")
-                        if pygame.mouse.get_pressed()[0] == 0:
-                            self.clicked = False
+                                print(button.label)
+
 
 
             pygame.display.flip()
