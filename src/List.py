@@ -12,7 +12,8 @@ class Genre:
     #Adding and removing selected genres from the list
 
     def genreList(self):
-        genreRequest = requests.get("https://api.themoviedb.org/3/genre/movie/list?api_key=ae2a71b3aac0b67e745c46b2ff92ecb9&language=en-US")
+        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        genreRequest = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
         conversion = json.loads(genreRequest.text)
         genreDicts = conversion['genres']
         allGenres = []
