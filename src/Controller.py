@@ -17,6 +17,7 @@ class Controller:
         self.genre_list = pygame.sprite.Group()
         self.clicked = False
         self.user_genre_list = []
+        self.user_selected_ids = []
 
         #first screen
         raw_genre_list = APIrequest.APIrequest.get_id(self)
@@ -56,7 +57,9 @@ class Controller:
                     if self.exit_button.rect.collidepoint(event.pos):
                         sys.exit()
                     elif self.search_button.rect.collidepoint(event.pos):
-                        self.state = "SECOND"
+                        temp = APIrequest.APIrequest(self.user_selected_ids)
+                        print(temp.apiRequest())
+                        # self.state = "SECOND"
                     for button in self.genre_list:
                         if button.rect.collidepoint(event.pos):
                             if pygame.mouse.get_pressed()[0] == 1:
@@ -65,10 +68,11 @@ class Controller:
                                     pass
                                 else:
                                     self.user_genre_list.append(button.label)
+                                    self.user_selected_ids.append(button.id)
                                 print(button.label)
                                 print(button.id)
                                 print(self.user_genre_list)
-
+                                print(self.user_selected_ids)
 
             pygame.display.flip()
 
