@@ -48,7 +48,9 @@ from src import APIrequests
 # y = List.Genre()
 # print(y.all_genres)
 x = APIrequests.MovieFinder(['28'])
-print(x.searchForMovies())
+print(x.movies_found)
+x.searchMovieData("Shang-Chi and the Legend of the Ten Rings")
+print(x.movies_data)
 # Setting up pygame/window --------------------------------
 # import pygame
 # import sys
