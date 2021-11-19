@@ -2,6 +2,17 @@ import pygame
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, x, y, img_file, scale, label, genre = None, id = None):
+        '''
+        assigns all initial values to a button object and creates its image
+        Args:
+            x (int) - x pos of button
+            y (int) - y pos of button
+            img_file (int) - image file that gets loaded
+            label (str) - text that goes on top of the image
+            genre (str) - movie genre if it is a genre button
+            id (int) - genre id of the genre
+        return: none
+        '''
         super().__init__()
         #creating rectangle and scaling image
         self.image = pygame.image.load(img_file).convert_alpha()
@@ -33,8 +44,13 @@ class Button(pygame.sprite.Sprite):
     #         self.status = False
     #         return False
     #
-    # def update(self, x, y, status):
-    #     #updates the position of the button and status if needed
-    #     self.rect.x = x
-    #     self.rect.y = y
-    #     self.status = status
+    def update(self, x, y):
+        '''
+        updates the position of the button to new values
+        Args:
+            x (int) new x pos
+            y (int) new y pos
+        Return: none
+        '''
+        self.rect.x = x
+        self.rect.y = y
