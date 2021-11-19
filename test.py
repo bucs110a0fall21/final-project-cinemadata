@@ -2,7 +2,7 @@ import pygame
 import sys
 from src import Button
 from src import List
-
+from src import APIrequests
 
 # ###Tests Part 1####
 # t = True
@@ -44,9 +44,13 @@ from src import List
 #         print(testGenre.selected_genres)
 # #test to see if continous list works
 #
-# ###Tests part 2(api requests)###
+# # ###Tests part 2(api requests)###
 # y = List.Genre()
 # print(y.all_genres)
+x = APIrequests.MovieFinder(['28'])
+print(x.movies_found)
+x.searchMovieData("Shang-Chi and the Legend of the Ten Rings")
+print(x.movies_data)
 # Setting up pygame/window --------------------------------
 # import pygame
 # import sys
