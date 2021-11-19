@@ -1,7 +1,7 @@
 import pygame
 import sys
 from src import Button
-from src import List
+from src import APIrequest
 
 class Controller:
     def __init__(self):
@@ -19,15 +19,16 @@ class Controller:
         self.user_genre_list = []
 
         #first screen
-        genreList = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary"]  # placeholder list, use API to request for the list
+        raw_genre_list = APIrequest.APIrequest.get_genre(self)
+
         # setting up buttons
         x_pos = 467
         y_pos = 150
-        for genre in genreList:
+        for genre in raw_genre_list:
             y_pos += 55
-            self.genre_list.add(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre))
-        self.exit_button = Button.Button(900, 600, "assets/buttonicon.png", 1, "Exit")
-        self.search_button = Button.Button(900, 400, "assets/buttonicon.png", 1, "Search")
+            self.genre_list.add(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre, genre, None))
+        self.exit_button = Button.Button(900, 600, "assets/buttonicon.png", 1, "Exit", None, None)
+        self.search_button = Button.Button(900, 400, "assets/buttonicon.png", 1, "Search", None, None)
         self.first_screen_sprites = pygame.sprite.Group(tuple(self.genre_list) + (self.exit_button,) + (self.search_button,))
 
     def mainLoop(self):

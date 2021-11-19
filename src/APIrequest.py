@@ -1,39 +1,38 @@
 import json
 import requests
 
-class Genre:
+class APIrequest:
     #This is the list of selected genres#
     #I made the genre list feature to be separate from the button class so that genre buttons wont each have a list on their own#
     #we would use this as a way to store selected genres and it would involve taking values from genre buttons
 
-    def __init__(self):
-        self.selected_genres = []
-        self.all_genres = self.genreList()
-        self.all_ids = self.genreId()
-    #Adding and removing selected genres from the list
+    def __init__(self, user_genres):
+        self.user_genres = user_genres
+
     def apiRequest(self):
-        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
-        genreRequest = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
-        conversion = json.loads(genreRequest.text)
-        conversion = conversion['genres']
-        return conversion
+        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': self.user_genres, 'language': 'en-US'}
+        search_request = requests.get("https://api.themoviedb.org/3/discover/movie?", params=start)
+        print(search_request.url)
+        raw_data = json.loads(search_request.text)
+        return raw_data
 
-    def genreList(self):
-        genreDicts = self.apiRequest()
-        allGenres = []
-        for genre in genreDicts:
-            allGenres.append(genre['name'])
-        return allGenres
+    def get_genre(self):
+        all_genres = []
+        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
+        raw_list = json.loads(request.text)
+        genres = raw_list['genres']
+        length = len(genres)
+        for i in range(length):
+            temp = genres[i]['name']
+            all_genres.append(temp)
+        print(genres)
+        return all_genres
 
-    def genreId(self):
-        genreIds = self.apiRequest()
-        allIds = []
-        for id in genreIds:
-            allIds.append(id['id'])
-        return allIds
-
-    def addRemove(self, genre, status):
-        if status:
-            self.selected_genres.append(genre)
-        else:
-            self.selected_genres.remove(genre)
+    def get_id(self):
+        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
+        raw_list = json.loads(request.text)
+        genre_id = raw_list['genres']
+        print(genre_id)
+        return genre_id
