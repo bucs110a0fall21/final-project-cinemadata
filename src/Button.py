@@ -1,7 +1,7 @@
 import pygame
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, x, y, img_file, scale, text):
+    def __init__(self, x, y, img_file, scale, text = None, id = None):
         super().__init__()
         #creating rectangle and scaling image
         self.image = pygame.image.load(img_file).convert_alpha()
@@ -14,6 +14,7 @@ class Button(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.label = text
+        self.genre_id = id
         self.text = pygame.font.SysFont(None, 30)
         self.message = self.text.render(text, True, (255, 255, 255))
         self.message_rect = self.message.get_rect(center=(self.width / 2, self.height/2))
