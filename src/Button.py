@@ -1,7 +1,7 @@
 import pygame
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, x, y, img_file, scale, label, genre, id):
+    def __init__(self, x, y, img_file, scale, label, genre = None, id = None):
         super().__init__()
         #creating rectangle and scaling image
         self.image = pygame.image.load(img_file).convert_alpha()

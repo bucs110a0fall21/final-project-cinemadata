@@ -1,6 +1,23 @@
 from src import APIrequest
+from src import Button
+import pygame
+import sys
 
-x = APIrequest.MovieFinder(['28'])
-print(x.movies_found)
-x.searchMovieData("Shang-Chi and the Legend of the Ten Rings")
-print(x.movies_data)
+#APIrequest (movies) test
+x = APIrequest.APIrequest(['28'])
+print(x.apiRequest())
+
+#APIrequest (genres) test
+user_genres = []
+y = APIrequest.APIrequest(user_genres)
+final = y.get_id()
+print(final)
+print(type(final))
+
+#dictionary
+for i in final:
+    print(type(i))
+    x = i['id']
+    print(type(x))
+
+
