@@ -25,7 +25,7 @@ class Genre:
             allGenres.append(genre['name'])
         return allGenres
 
-    def genreList(self):
+    def genreId(self):
         conversion = self.apiRequest()
         genreDicts = conversion['id']
         allIds = []
