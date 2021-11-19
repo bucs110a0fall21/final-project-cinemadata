@@ -15,22 +15,21 @@ class Genre:
         payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
         genreRequest = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
         conversion = json.loads(genreRequest.text)
+        conversion = conversion['genres']
         return conversion
 
     def genreList(self):
-        conversion = self.apiRequest()
-        genreDicts = conversion['genres']
+        genreDicts = self.apiRequest()
         allGenres = []
         for genre in genreDicts:
             allGenres.append(genre['name'])
         return allGenres
 
     def genreId(self):
-        conversion = self.apiRequest()
-        genreDicts = conversion['id']
+        genreIds = self.apiRequest()
         allIds = []
-        for genre in genreDicts:
-            allIds.append(genre['name'])
+        for id in genreIds:
+            allIds.append(id['id'])
         return allIds
 
     def addRemove(self, genre, status):
