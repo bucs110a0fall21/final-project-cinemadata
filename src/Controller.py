@@ -42,6 +42,7 @@ class Controller:
                 self.thirdScreenLoop()
 
     def firstScreenLoop(self):
+
         while self.state == "MAIN":
             #setting up static images
             logo = pygame.image.load('assets/screenlogo.png')
@@ -69,6 +70,13 @@ class Controller:
                                 else:
                                     self.user_genre_list.append(button.label)
                                     self.user_selected_ids.append(button.id)
+                                    x_pos = 40
+                                    y_pos = 40
+                                    for i in self.user_selected_ids:
+                                        y_pos += 55
+                                        logo = pygame.image.load('assets/buttonicon.png')
+                                        self.screen.blit(logo, (x_pos, y_pos))
+                                        # self.genre_list.add(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'],genre['name'], genre['id']))
                                 print(button.label)
                                 print(button.id)
                                 print(self.user_genre_list)
