@@ -4,6 +4,15 @@ from src import Button
 from src import APIrequest
 
 class Controller:
+    """
+    Creates screen and sets up button class
+    Args:
+        width (int) - x pos of screen
+        height (int) - y pos of screen
+        state (str) - state of the game
+
+    return: none
+    """
     def __init__(self):
         super().__init__()
         self.width = 1080
@@ -60,7 +69,7 @@ class Controller:
                     elif self.search_button.rect.collidepoint(event.pos):
                         temp = APIrequest.APIrequest(self.user_selected_ids)
                         print(temp.apiRequest())
-                        # self.state = "SECOND"
+                        self.state = "SECOND"
                     for button in self.genre_list:
                         if button.rect.collidepoint(event.pos):
                             if pygame.mouse.get_pressed()[0] == 1:
@@ -76,11 +85,18 @@ class Controller:
                                         y_pos += 55
                                         logo = pygame.image.load('assets/buttonicon.png')
                                         self.screen.blit(logo, (x_pos, y_pos))
-                                        # self.genre_list.add(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'],genre['name'], genre['id']))
+                                        # self.genre_list(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'],genre['name'], genre['id']))
                                 print(button.label)
                                 print(button.id)
                                 print(self.user_genre_list)
                                 print(self.user_selected_ids)
+            pygame.display.flip()
 
+    def secondScreenLoop(self):
+        self.screen.fill((130, 210, 220))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
             pygame.display.flip()
 
