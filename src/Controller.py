@@ -20,7 +20,7 @@ class Controller:
         self.state = "MAIN"
         pygame.display.set_caption("SuggestCinema")  # Title of program
         self.screen = pygame.display.set_mode((self.width, self.height))
-        self.background = pygame.Surface((self.width, self.height))
+        self.background = pygame.Surface((1080, 1440))
         self.font_name = pygame.font.get_default_font()
         self.screen.fill((130, 210, 220)) #background color
         self.genre_list = pygame.sprite.Group()
@@ -51,19 +51,25 @@ class Controller:
                 self.thirdScreenLoop()
 
     def firstScreenLoop(self):
-
+        scroll_y = 0
         while self.state == "MAIN":
+            self.background.fill((130, 210, 220))
             #setting up static images
             logo = pygame.image.load('assets/screenlogo.png')
-            self.screen.blit(logo, (277, 0))
+            self.background.blit(logo, (277, 0))
             tmdb_logo = pygame.image.load('assets/moviedb.png')
-            self.screen.blit(tmdb_logo, (800, 0))
-            self.first_screen_sprites.draw(self.screen)
+            self.background.blit(tmdb_logo, (800, 0))
+            self.first_screen_sprites.draw(self.background)
             #loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 4: scroll_y = min(scroll_y + 30, 0)
+                    if event.button == 5: scroll_y = max(scroll_y - 30, -720)   #WIP
+                    self.screen.blit(self.background, (0, scroll_y))
+                    pygame.display.flip()
+
                     if self.exit_button.rect.collidepoint(event.pos):
                         sys.exit()
                     elif self.search_button.rect.collidepoint(event.pos):
@@ -82,9 +88,13 @@ class Controller:
                                     x_pos = 40
                                     y_pos = 40
                                     for i in self.user_selected_ids:
-                                        y_pos += 55
-                                        logo = pygame.image.load('assets/buttonicon.png')
-                                        self.screen.blit(logo, (x_pos, y_pos))
+                                        # display usergenrelist
+                                        # .remove from list + id
+                                        # removeButton
+                                        # for button in self.removebuttons:
+                                            y_pos += 55
+                                            logo = pygame.image.load('assets/buttonicon.png')
+                                            self.background.blit(logo, (x_pos, y_pos))
                                         # self.genre_list(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'],genre['name'], genre['id']))
                                 print(button.label)
                                 print(button.id)
@@ -93,6 +103,7 @@ class Controller:
             pygame.display.flip()
 
     def secondScreenLoop(self):
+        # Display API Info
         self.screen.fill((130, 210, 220))
         pygame.display.flip()
         for event in pygame.event.get():
