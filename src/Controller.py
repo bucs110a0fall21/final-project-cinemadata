@@ -68,7 +68,6 @@ class Controller:
                     if event.button == 4: scroll_y = min(scroll_y + 30, 0)
                     if event.button == 5: scroll_y = max(scroll_y - 30, -720)   #WIP
                     self.screen.blit(self.background, (0, scroll_y))
-                    pygame.display.flip()
 
                     if self.exit_button.rect.collidepoint(event.pos):
                         sys.exit()
