@@ -60,15 +60,14 @@ class Controller:
             tmdb_logo = pygame.image.load('assets/moviedb.png')
             self.background.blit(tmdb_logo, (800, 0))
             self.first_screen_sprites.draw(self.background)
+            self.screen.blit(self.background, (0, scroll_y))
             #loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 4: scroll_y = min(scroll_y + 30, 0)
-                    if event.button == 5: scroll_y = max(scroll_y - 30, -720)   #WIP
-                    self.screen.blit(self.background, (0, scroll_y))
-
+                    if event.button == 5: scroll_y = max(scroll_y - 30, -720)
                     if self.exit_button.rect.collidepoint(event.pos):
                         sys.exit()
                     elif self.search_button.rect.collidepoint(event.pos):
@@ -94,6 +93,7 @@ class Controller:
                                             y_pos += 55
                                             logo = pygame.image.load('assets/buttonicon.png')
                                             self.background.blit(logo, (x_pos, y_pos))
+
                                         # self.genre_list(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'],genre['name'], genre['id']))
                                 print(button.label)
                                 print(button.id)
