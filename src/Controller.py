@@ -27,10 +27,12 @@ class Controller:
         self.clicked = False
         self.user_genre_list = []
         self.user_selected_ids = []
+        self.search_result = ''
 
         #first screen
-        raw_genre_list = APIrequest.APIrequest.get_id(self)
-
+        raw_genre_list = APIrequest.APIrequest.getId(self)
+        #test to see if the list is working
+        print(APIrequest.APIrequest.getGenre(self))
         # setting up buttons
         x_pos = 467
         y_pos = 150
@@ -74,6 +76,7 @@ class Controller:
                         temp = APIrequest.APIrequest(self.user_selected_ids)
                         print(temp.apiRequest())
                         self.state = "SECOND"
+                        self.search_result = temp.apiRequest() #saves the results
                     for button in self.genre_list:
                         if button.rect.collidepoint(event.pos):
                             if pygame.mouse.get_pressed()[0] == 1:
@@ -107,6 +110,7 @@ class Controller:
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print(self.search_result['results']) #list of movies
                 sys.exit()
             pygame.display.flip()
 

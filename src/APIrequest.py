@@ -15,6 +15,7 @@ class APIrequest:
         Return: none
         '''
         self.user_genres = user_genres
+        self.genre_dictionary = self.getGenre()
 
     def apiRequest(self):
         '''
@@ -30,27 +31,28 @@ class APIrequest:
         raw_data = json.loads(search_request.text)
         return raw_data
 
-    def get_genre(self):
+    def getGenre(self):
         '''
-        gets data and creates a list of all genres
+        gets data and creates a dictionary of all genres with their id as the key
         Args:
             self
         Return:
-            all_genres (list) list of all genres
+            all_genres (dict) dict of all genres
         '''
-        all_genres = []
+        all_genres = {}
         start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
         request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
         raw_list = json.loads(request.text)
         genres = raw_list['genres']
         length = len(genres)
         for i in range(length):
-            temp = genres[i]['name']
-            all_genres.append(temp)
-        print(genres)
+            genre_value = genres[i]['name']
+            genre_key = genres[i]['id']
+            all_genres[genre_key] = genre_value
+        print(all_genres)
         return all_genres
 
-    def get_id(self):
+    def getId(self):
         '''
         gets the list of dictionaries with each dictionary containing a genre's name and id
         Args:
@@ -62,5 +64,10 @@ class APIrequest:
         request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
         raw_list = json.loads(request.text)
         genre_id = raw_list['genres']
-        print(genre_id)
         return genre_id
+
+    def moviesGenres(self, genres):
+        genre_list =[]
+        for id_number in genres:
+            genre_list.append(self.genre_dictionary[id_number])
+        return genre_list
