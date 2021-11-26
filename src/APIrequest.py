@@ -8,7 +8,7 @@ class APIrequest:
 
     def __init__(self, user_genres):
         '''
-        saves the current list of selected genres to the object
+        saves the genre dictionary and the current list of selected genres to the object
         Args:
             self
             user_genres (list) - list of genre ids that will be sent to the api
@@ -66,8 +66,16 @@ class APIrequest:
         genre_id = raw_list['genres']
         return genre_id
 
-    def moviesGenres(self, genres):
-        genre_list =[]
-        for id_number in genres:
+    def moviesGenres(self, list_of_ids):
+        '''
+        takes a list of genre ids and returns a list of genre names
+        Args:
+            self
+            list_of_ids (list) list of genre ids
+        Return:
+            genre_list (list) list of genre names
+        '''
+        genre_list = []
+        for id_number in list_of_ids:
             genre_list.append(self.genre_dictionary[id_number])
         return genre_list
