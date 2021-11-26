@@ -19,11 +19,15 @@ print(type(final))
 #     print(type(i))
 #     x = i['id']
 #     print(type(x))
+
+#genre id list conversion test
 y = x.apiRequest()
 print(y)
 print(y['results'][0]['title'])
 print(y['results'][0]['genre_ids'])
 print(x.moviesGenres(y['results'][0]['genre_ids']))
+
+
 ###old api request model in case we need it for reference###
 # import json
 # import requests
