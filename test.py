@@ -10,15 +10,23 @@ print(x.apiRequest())
 #APIrequest (genres) test
 user_genres = []
 y = APIrequest.APIrequest(user_genres)
-final = y.get_id()
+final = y.getId()
 print(final)
 print(type(final))
 
-#dictionary
-for i in final:
-    print(type(i))
-    x = i['id']
-    print(type(x))
+# #dictionary
+# for i in final:
+#     print(type(i))
+#     x = i['id']
+#     print(type(x))
+
+#genre id list conversion test
+y = x.apiRequest()
+print(y)
+print(y['results'][0]['title'])
+print(y['results'][0]['genre_ids'])
+print(x.moviesGenres(y['results'][0]['genre_ids']))
+
 
 ###old api request model in case we need it for reference###
 # import json
