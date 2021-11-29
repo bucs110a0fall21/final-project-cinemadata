@@ -42,6 +42,9 @@ class Controller:
         self.tmdb_logo = pygame.image.load('assets/moviedb.png')
         self.first_screen_sprites = pygame.sprite.Group(tuple(self.genre_list) + tuple(self.user_genre_buttons) + (self.exit_button,) + (self.search_button,))
 
+        #second screen
+        self.second_screen_sprites = pygame.sprite.Group((self.exit_button,))
+
     def mainLoop(self):
         while self.state:
             if self.state == "MAIN":
@@ -106,12 +109,22 @@ class Controller:
             pygame.display.update()
 
     def secondScreenLoop(self):
-        # Display API Info
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        while self.state == "SECOND":
+            #check for events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.exit_button.rect.collidepoint(event.pos):
+                        sys.exit()
 
-        self.screen.fill((130, 210, 220))
 
-        pygame.display.flip()
+            #update
+            self.screen.fill((130, 210, 220))
+            self.screen.blit(self.logo, (467, 0))
+            self.screen.blit(self.tmdb_logo, (800, 0))
+            self.second_screen_sprites.draw(self.screen)
+
+            #redraw
+            pygame.display.update()
 
