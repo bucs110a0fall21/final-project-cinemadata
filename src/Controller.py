@@ -28,10 +28,8 @@ class Controller:
         self.user_genre_list = []
         self.user_selected_ids = []
 
-
         #first screen
         raw_genre_list = APIrequest.APIrequest.get_id(self)
-
         # setting up buttons
         x_pos = 467
         y_pos = 0

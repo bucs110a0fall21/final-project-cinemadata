@@ -116,24 +116,29 @@ The Project is broken down into the following file structure:
 
 ### Software Lead - Kevin Wu
 
-Integrated the button, and APIrequest classes into the GUI, cleaned up code where needed, and helped with fixing various bugs.
+Integrated the button and APIrequest models into the GUI, completed scrolling feature, caught various bugs that came up during the development process, and cleaned up code where needed.
 
 ### Front End Specialist - Wilson Huang
 
-Created the scrolling feature and the main screen. Worked collaboratively with back-end to create the Select, Genre, Search, Back, and More Info buttons. 
+Created the scrolling feature, main, second, and third screens. Worked with back-end to create the buttons. 
 
 ### Back End Specialist - Daniel Zheng
 
-Created the Button class and methods within it, as well as the APIrequest class along with the methods in it. 
+Created the Button and APIrequest classes, and helped implement the models into the GUI.
 
 ## Testing *(Software Lead)*
-* << Describe your testing strategy for your project. >>
-    * << Example >>
+* Tested each feature following the ATP, and tested other features when new features have yet to been added.
+    * Example: Tested 'Exit' button prior to scrolling feature as scrolling feature had yet to been implemented, and tested 'Search' button by printing out data prior to second screen being implemented
 
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Run Counter Program  | GUI window appears with count = 0  |          |
-|  2  | click count button  | display changes to count = 1 |                 |
-|  3  |
+|  1  | Scroll up and down with mousewheel  | Genre buttons in center should move up and down with respect to mousewheel  |          |
+|  2  | Click on center genre button(s)  | Button appears on the left with respective genre |  |
+|  3  | Click on 'Search' button | Window changes to different screen showing list of movies with matching genres  |  |
+|  4  | Scroll up and down with mousewheel  | List of movies move up and down with respect to mousewheel
+|  5  | Click on 'More Info' button  | Window changes to different screen displaying relevant data about the respective movie
+|  6  | Click on 'Back' button  | Returns to previous screen  |
+|  7  | Click on 'Back button  | Returns to Main screen  |
+|  8  | Click on 'Exit' Button  | Exits program  |
