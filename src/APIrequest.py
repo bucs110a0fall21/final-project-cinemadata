@@ -48,6 +48,7 @@ class APIrequest:
             temp = genres[i]['name']
             all_genres.append(temp)
         print(genres)
+        print(all_genres)
         return all_genres
 
     def get_id(self):

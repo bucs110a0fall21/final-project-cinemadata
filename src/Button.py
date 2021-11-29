@@ -44,13 +44,12 @@ class Button(pygame.sprite.Sprite):
     #         self.status = False
     #         return False
     #
-    def update(self, x, y):
+    def update(self, y):
         '''
         updates the position of the button to new values
         Args:
-            x (int) new x pos
             y (int) new y pos
         Return: none
         '''
-        self.rect.x = x
-        self.rect.y = y
+        self.y = y
+        self.rect.y += self.y
