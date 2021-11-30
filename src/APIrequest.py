@@ -1,6 +1,6 @@
 import json
 import requests
-
+from src import APIproxy
 class APIrequest:
     #This is the list of selected genres#
     #I made the genre list feature to be separate from the button class so that genre buttons wont each have a list on their own#
@@ -65,3 +65,11 @@ class APIrequest:
         genre_id = raw_list['genres']
         print(genre_id)
         return genre_id
+    
+    def getPosters(self, data, tempdir):
+        counter = 0 
+        for movie in data['results']:
+            poster = movie['poster_path']
+            url = 'https://image.tmdb.org/t/p/w500' + poster
+            APIproxy.MoviePoster(url, tempdir + f'sample{counter}.jpg')
+            counter += 1

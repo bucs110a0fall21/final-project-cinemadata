@@ -2,30 +2,37 @@ from src import APIrequest
 from src import Button
 import pygame
 import sys
+import tempfile
 
-#APIrequest (movies) test
-x = APIrequest.APIrequest(['28'])
-print(x.apiRequest())
+#temp file test
+fo = tempfile.TemporaryDirectory(dir = 'assets')
+print(fo.name)
+fo.cleanup()
 
-#APIrequest (genres) test
-user_genres = []
-y = APIrequest.APIrequest(user_genres)
-final = y.getId()
-print(final)
-print(type(final))
 
-# #dictionary
-# for i in final:
-#     print(type(i))
-#     x = i['id']
-#     print(type(x))
+# #APIrequest (movies) test
+# x = APIrequest.APIrequest(['28'])
+# print(x.apiRequest())
 
-#genre id list conversion test
-y = x.apiRequest()
-print(y)
-print(y['results'][0]['title'])
-print(y['results'][0]['genre_ids'])
-print(x.moviesGenres(y['results'][0]['genre_ids']))
+# #APIrequest (genres) test
+# user_genres = []
+# y = APIrequest.APIrequest(user_genres)
+# final = y.getId()
+# print(final)
+# print(type(final))
+
+# # #dictionary
+# # for i in final:
+# #     print(type(i))
+# #     x = i['id']
+# #     print(type(x))
+
+# #genre id list conversion test
+# y = x.apiRequest()
+# print(y)
+# print(y['results'][0]['title'])
+# print(y['results'][0]['genre_ids'])
+# print(x.moviesGenres(y['results'][0]['genre_ids']))
 
 
 ###old api request model in case we need it for reference###

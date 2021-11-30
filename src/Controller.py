@@ -2,9 +2,9 @@ import pygame
 import sys
 from src import Button
 from src import APIrequest
-
+from src import APIproxy
 class Controller:
-    def __init__(self):
+    def __init__(self, tempdir):
         super().__init__()
         self.width = 1080
         self.height = 720
@@ -18,7 +18,7 @@ class Controller:
         self.user_genre_buttons = pygame.sprite.Group()
         self.user_genre_list = []
         self.user_selected_ids = []
-
+        self.tempdir = tempdir
         #first screen
         raw_genre_list = APIrequest.APIrequest.get_id(self)
         # setting up buttons
@@ -111,7 +111,9 @@ class Controller:
 
     def secondScreenLoop(self):
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
+        results = movie_data.apiRequest()
         print(movie_data.apiRequest())
+        movie_data.getPosters(results, f'assets/{self.tempdir}/')
         while self.state == "SECOND":
             #check for events
             for event in pygame.event.get():
