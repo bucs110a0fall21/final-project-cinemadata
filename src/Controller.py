@@ -75,7 +75,7 @@ class Controller:
                             if button.label in self.user_genre_list:
                                 pass
                             elif button not in self.user_genre_buttons:
-                                button_var = Button.Button(15, y_pos, 'assets/buttonicon.png', 1, button.label, button.label, button.id)
+                                button_var = Button.Button(x_pos, y_pos, 'assets/buttonicon.png', 1, button.label, button.label, button.id)
                                 self.user_genre_buttons.add(button_var)
                                 self.user_genre_list.append(button.label)
                                 self.user_selected_ids.append(button.id)
