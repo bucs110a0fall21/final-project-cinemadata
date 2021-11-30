@@ -6,7 +6,7 @@ class MoviePoster(pygame.sprite.Sprite):
         super().__init__()
         self.url = url
         response = requests.get(self.url)
-        if response.status_code ==200:
+        if response.status_code == 200:
             with open(save_path, 'wb') as file:
                 file.write(response.content)
             file.close()
@@ -15,6 +15,6 @@ class MoviePoster(pygame.sprite.Sprite):
         self.resize()
     
     def resize(self):
-        # Paramters of transform.scale = (surface, size(width, height), destination surface)
-        pygame.transform.scale(self.image, ( 50, 100))
+        # Parameters of transform.scale = (surface, size(width, height), destination surface)
+        pygame.transform.scale(self.image, (50, 100))
         self.rect = self.image.get_rect()
