@@ -31,7 +31,7 @@ class Controller:
         self.search_button = Button.Button(900, 400, "assets/buttonicon.png", 1, "Search")
         self.back_button = Button.Button(900, 500, "assets/buttonicon.png", 1, "Back")
         self.logo = pygame.image.load('assets/screenlogo.png')
-        self.tmdb_logo = pygame.image.load('assets/moviedb.png')
+        self.tmdb_logo = pygame.image.load('assets/tmdblogo.png')
         self.first_screen_sprites = pygame.sprite.Group(tuple(self.genre_list) + (self.exit_button,) + (self.search_button,))
 
         #second screen
@@ -100,7 +100,7 @@ class Controller:
             #update
             self.screen.fill((130, 210, 220))
             self.screen.blit(self.logo, (180, 0))
-            self.screen.blit(self.tmdb_logo, (800, 0))
+            self.screen.blit(self.tmdb_logo, (850, 20))
             for button in self.genre_list:
                 button.update(y_offset)
             self.first_screen_sprites.draw(self.screen)
@@ -129,7 +129,7 @@ class Controller:
             #update
             self.screen.fill((130, 210, 220))
             self.screen.blit(self.logo, (467, 0))
-            self.screen.blit(self.tmdb_logo, (800, 0))
+            self.screen.blit(self.tmdb_logo, (850, 20))
             self.second_screen_sprites.draw(self.screen)
 
             #redraw
