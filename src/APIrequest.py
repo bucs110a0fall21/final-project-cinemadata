@@ -24,8 +24,8 @@ class APIrequest:
         Return:
             raw_data (dict) converted search results from api
         '''
-        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': self.user_genres, 'language': 'en-US'}
-        search_request = requests.get("https://api.themoviedb.org/3/discover/movie?", params=start)
+        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': self.user_genres, 'language': 'en-US'}
+        search_request = requests.get("https://api.themoviedb.org/3/discover/movie?", params=payload)
         print(search_request.url)
         raw_data = json.loads(search_request.text)
         return raw_data
@@ -39,8 +39,8 @@ class APIrequest:
             all_genres (list) list of all genres
         '''
         all_genres = []
-        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
-        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
+        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
         raw_list = json.loads(request.text)
         genres = raw_list['genres']
         length = len(genres)
