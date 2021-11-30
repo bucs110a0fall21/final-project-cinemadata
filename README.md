@@ -15,7 +15,7 @@
 ***
 
 ## Project Description *(Software Lead)*
-This is a program that takes user input (genre(s), ratings, etc.) and using the inputted filters, sends a request to the an API for films that have the attributes given by the user. It displays the movies in a graphical interface and the user is able to click on the "More Info" button to get a detailed description of the movie as well as where to buy, stream, or display if the movie is currently in theaters.
+This is a program that takes user input based on genre and using selected genres, sends a request to the an API for films that have the attributes given by the user. It displays the movies in a graphical interface and the user is able to click on the "More Info" button to get a detailed description of the movie as well as where to buy, stream, or display if the movie is currently in theaters.
 
 ***    
 
@@ -103,7 +103,7 @@ The Project is broken down into the following file structure:
 * src
     * Button.py
     * Controller.py
-    * Genre.py
+    * APIrequest.py
 * assets
     * <all of your media, i.e. images, font files, etc, should go here)
 * etc
