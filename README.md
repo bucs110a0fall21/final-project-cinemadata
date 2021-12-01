@@ -120,7 +120,7 @@ Integrated the button and APIrequest models into the GUI, completed scrolling fe
 
 ### Front End Specialist - Wilson Huang
 
-Created the scrolling feature, main, second, and third screens GUIs. Worked with back-end to create the buttons. 
+Created the scrolling feature, main, second, and third screens code and GUIs. Worked with back-end to create the buttons. 
 
 ### Back End Specialist - Daniel Zheng
 
