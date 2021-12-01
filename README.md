@@ -134,6 +134,7 @@ Created the Button and APIrequest classes, and helped implement the models into 
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
+|  1  | Open terminal, navigate to folder, and type 'python3 main.py' | Program starts and displays main screen |    |
 |  1  | Scroll up and down with mousewheel  | Genre buttons in center move up and down with respect to mousewheel  |    |
 |  2  | Left click on center genre button(s)  | Button appears on the left with respective genre |    |
 |  3  | Left click on button(s) on the left | Button disappears, indicating that genre has been removed from selection |    |
