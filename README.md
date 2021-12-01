@@ -127,18 +127,19 @@ Created the scrolling feature, main, second, and third screens. Worked with back
 Created the Button and APIrequest classes, and helped implement the models into the GUI.
 
 ## Testing *(Software Lead)*
-* Tested each feature following the ATP, and tested other features when new features have yet to been added.
-    * Example: Tested 'Exit' button prior to scrolling feature as scrolling feature had yet to been implemented, and tested 'Search' button by printing out data prior to second screen being implemented
+* Tested code each time a new feature was added and tested all features, so long as they were implemented, as per the ATP.
+    * Example: Tested 'Exit' button prior to scrolling feature as scrolling feature had yet to been implemented, and tested 'Search' button by printing out data prior to second screen being implemented. In addition, code was tested to ensure that user input would not break the program.
 
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Scroll up and down with mousewheel  | Genre buttons in center should move up and down with respect to mousewheel  |          |
-|  2  | Click on center genre button(s)  | Button appears on the left with respective genre |  |
-|  3  | Click on 'Search' button | Window changes to different screen showing list of movies with matching genres  |  |
-|  4  | Scroll up and down with mousewheel  | List of movies move up and down with respect to mousewheel
-|  5  | Click on 'More Info' button  | Window changes to different screen displaying relevant data about the respective movie
-|  6  | Click on 'Back' button  | Returns to previous screen  |
-|  7  | Click on 'Back button  | Returns to Main screen  |
-|  8  | Click on 'Exit' Button  | Exits program  |
+|  1  | Scroll up and down with mousewheel  | Genre buttons in center move up and down with respect to mousewheel  |    |
+|  2  | Left click on center genre button(s)  | Button appears on the left with respective genre |    |
+|  3  | Left click on button(s) on the left | Button disappears, indicating that genre has been removed from selection |    |
+|  4  | Left click on 'Search' button in the bottom right, above the 'Exit' button| Window changes to different screen showing list of movies with matching genres  |    |
+|  5  | Scroll up and down with mousewheel  | List of movies move up and down with respect to mousewheel  |    |
+|  6  | Left click on 'More Info' button in the bottom right of the box for each movie | Window changes to different screen displaying relevant data about the respective movie  |    |
+|  7  | Left click on 'Back' button on the bottom right, above the 'Exit' button |  Returns to previous screen  |    |
+|  8  | Left click on 'Back button in the bottom right, above the 'Exit' button  |  Returns to Main screen  |    |
+|  9  | Left click on 'Exit' Button in the bottom right  |  Program closes  |    |

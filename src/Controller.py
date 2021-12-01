@@ -5,6 +5,11 @@ from src import APIrequest
 from src import APIproxy
 class Controller:
     def __init__(self, tempdir):
+        """
+        Creates all objects in the program
+        args: (str) tempdir
+        return: None
+        """
         super().__init__()
         self.width = 1080
         self.height = 720
@@ -38,6 +43,11 @@ class Controller:
         self.second_screen_sprites = pygame.sprite.Group((self.exit_button,) + (self.back_button,))
 
     def mainLoop(self):
+        """
+        Checks for the current state of the program, and changes subloops in respect to the state.
+        args: None
+        return: None
+        """
         while self.state:
             if self.state == "MAIN":
                 self.firstScreenLoop()
@@ -47,6 +57,11 @@ class Controller:
                 self.thirdScreenLoop()
 
     def firstScreenLoop(self):
+        """
+        Subloop for the first screen of the program, and runs when the game state is "MAIN"
+        args: None
+        return: None
+        """
         x_pos = 15
         y_pos = 200
         while self.state == "MAIN":
@@ -110,6 +125,11 @@ class Controller:
             pygame.display.update()
 
     def secondScreenLoop(self):
+        """
+        Subloop for the second screen of the program, and runs when the game state is "SECOND", displays movie data based on user filters from the first screen.
+        args: None
+        return: None
+        """
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
         print(movie_data.apiRequest())
@@ -133,6 +153,26 @@ class Controller:
             self.screen.blit(self.logo, (467, 0))
             self.screen.blit(self.tmdb_logo, (850, 20))
             self.second_screen_sprites.draw(self.screen)
+
+            #redraw
+            pygame.display.update()
+
+    def thirdScreenLoop(self):
+        """
+        Subloop for the third screen of the program, and runs when the game state is "THIRD", displays more information about the movie chosen from the second screen.
+        args: None
+        return: None
+        """
+        while self.state == "THIRD":
+            #check for events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+
+            #update
+            self.screen.fill((130, 210, 220))
+            self.screen.blit(self.logo, (467, 0))
+            self.screen.blit(self.tmdb_logo, (850, 20))
 
             #redraw
             pygame.display.update()
