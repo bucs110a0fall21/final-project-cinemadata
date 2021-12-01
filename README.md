@@ -135,9 +135,9 @@ Created the Button and APIrequest classes, and helped implement the models into 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
 |  1  | Open terminal, navigate to folder, and type 'python3 main.py' | Program starts and displays main screen |    |
-|  2  | Scroll up and down with mousewheel  | Genre buttons in center move up and down with respect to mousewheel  |    |
-|  3  | Left click on center genre button(s)  | Button appears on the left with respective genre |    |
-|  4  | Left click on button(s) on the left | Button disappears, indicating that genre has been removed from selection |    |
+|  2  | Hover mouse over program window, and use mousewheel up and down  | Genre buttons in center move up and down with respect to mousewheel  |    |
+|  3  | Left click on center genre button(s) in main screen  | Button appears on the left with respective genre, indicating genre is added to selection |    |
+|  4  | Left click on button(s) on the left in main screen | Button disappears, indicating that genre has been removed from selection |    |
 |  5  | Left click on 'Search' button in the bottom right, above the 'Exit' button  | Window changes to different screen showing list of movies with matching genres  |    |
 |  6  | Left click on 'Back button in the bottom right, above the 'Exit' button  |  Returns to Main screen  |    |
 |  7  | Left click on 'Exit' Button in the bottom right  |  Program closes  |    |
