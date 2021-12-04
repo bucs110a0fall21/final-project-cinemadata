@@ -154,32 +154,46 @@ class Controller:
                     if event.button == 4:
                         y_position = min(y_position + 150, 0)
                     if event.button == 5:
-                        y_position = max(y_position -150, -5500)
+                            y_position = max(y_position -150, -5500)
 
 
             #update
-            title_font = pygame.font.SysFont('arial', 30)
+            title_font = pygame.font.SysFont('arial', 30, True)
             standard_font = pygame.font.SysFont('arial', 15)
             poster_y_pos = 0
             y_pos = 0
             x_pos = 200
-            num = 0
-
+            accum = 0
             self.background.fill((130, 210, 220))
             self.background.blit(self.logo, (850, 0))
             self.background.blit(self.tmdb_logo, (850, 200))
 
             for movie in results_list:
-                num += 1
+                accum += 1
                 temp_title = movie['title']
                 temp_description = movie['overview']
+
+                temp_date = movie['release_date']
+                temp_date = f'Release Date: {temp_date}'
+                temp_avg_vote = str(movie['vote_average'])
+                temp_avg_vote = f'Average Rating: {temp_avg_vote} / 10'
+                temp_vote_count = str(movie['vote_count'])
+                temp_vote_count = f'Vote Count: {temp_vote_count}'
                 title = title_font.render(temp_title, True, (0, 0, 0))
                 description = standard_font.render(temp_description, True, (0, 0, 0))
+                date = standard_font.render(temp_date, True, (0, 0, 0))
+                avg_vote = standard_font.render(temp_avg_vote, True, (0, 0, 0))
+                vote_count = standard_font.render(temp_vote_count, True, (0, 0, 0))
+                items = [date, avg_vote, vote_count]
+
                 self.background.blit(title, (x_pos, y_pos))
-                y_pos += 50
+                y_pos += 40
+                for item in items:
+                    self.background.blit(item, (x_pos, y_pos))
+                    y_pos += 20
                 self.background.blit(description, (x_pos, y_pos))
-                y_pos += 250
-                img_file = pygame.image.load(f'assets/{self.tempdir}/sample{num-1}.jpg')
+                y_pos += 200
+                img_file = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg')
                 img_file = pygame.transform.scale(img_file, (167, 250))
                 self.background.blit(img_file, (0, poster_y_pos))
                 poster_y_pos += 300
