@@ -16,9 +16,11 @@ class Controller:
         self.state = "MAIN"
         pygame.display.set_caption("SuggestCinema")  # Title of program
         self.screen = pygame.display.set_mode((self.width, self.height))
-        self.background = pygame.Surface((1080, 1440))
+        self.background = pygame.Surface((1080, 14400))
         self.font_name = pygame.font.get_default_font()
         self.screen.fill((130, 210, 220)) #background color
+        clock = pygame.time.Clock()
+        clock.tick(60)
         self.genre_list = pygame.sprite.Group()
         self.user_genre_buttons = pygame.sprite.Group()
         self.user_genre_list = []
@@ -132,8 +134,11 @@ class Controller:
         """
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
-        print(movie_data.apiRequest())
-        movie_data.getPosters(results, f'assets/{self.tempdir}/')
+        results_list = results['results']
+        print(results_list)
+        directory = f'assets/{self.tempdir}/'
+        movie_data.getPosters(results, directory)
+        y_position = 0
         while self.state == "SECOND":
             #check for events
             for event in pygame.event.get():
@@ -146,13 +151,42 @@ class Controller:
                     if self.back_button.rect.collidepoint(event.pos):
                         if pygame.mouse.get_pressed()[0] == 1:
                             self.state = "MAIN"
+                    if event.button == 4:
+                        y_position = min(y_position + 150, 0)
+                    if event.button == 5:
+                        y_position = max(y_position -150, -5500)
 
 
             #update
-            self.screen.fill((130, 210, 220))
-            self.screen.blit(self.logo, (467, 0))
-            self.screen.blit(self.tmdb_logo, (850, 20))
+            title_font = pygame.font.SysFont('arial', 30)
+            standard_font = pygame.font.SysFont('arial', 15)
+            poster_y_pos = 0
+            y_pos = 0
+            x_pos = 200
+            num = 0
+
+            self.background.fill((130, 210, 220))
+            self.background.blit(self.logo, (850, 0))
+            self.background.blit(self.tmdb_logo, (850, 200))
+
+            for movie in results_list:
+                num += 1
+                temp_title = movie['title']
+                temp_description = movie['overview']
+                title = title_font.render(temp_title, True, (0, 0, 0))
+                description = standard_font.render(temp_description, True, (0, 0, 0))
+                self.background.blit(title, (x_pos, y_pos))
+                y_pos += 50
+                self.background.blit(description, (x_pos, y_pos))
+                y_pos += 250
+                img_file = pygame.image.load(f'assets/{self.tempdir}/sample{num-1}.jpg')
+                img_file = pygame.transform.scale(img_file, (167, 250))
+                self.background.blit(img_file, (0, poster_y_pos))
+                poster_y_pos += 300
+
+            self.screen.blit(self.background, (0, y_position))
             self.second_screen_sprites.draw(self.screen)
+
 
             #redraw
             pygame.display.update()
