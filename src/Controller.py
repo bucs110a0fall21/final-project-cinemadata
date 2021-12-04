@@ -2,7 +2,6 @@ import pygame
 import sys
 from src import Button
 from src import APIrequest
-from src import APIproxy
 class Controller:
     def __init__(self, tempdir):
         """
@@ -14,7 +13,7 @@ class Controller:
         self.width = 1080
         self.height = 720
         self.state = "MAIN"
-        pygame.display.set_caption("SuggestCinema")  # Title of program
+        pygame.display.set_caption("SuggestCinema")
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.Surface((1080, 14400))
         self.font_name = pygame.font.get_default_font()
@@ -37,8 +36,8 @@ class Controller:
         self.back_button = Button.Button(900, 500, "assets/buttonicon.png", 1, "Back")
         self.logo = pygame.image.load('assets/screenlogo.png')
         self.tmdb_logo = pygame.image.load('assets/tmdblogo.png')
+        #first screen
         self.first_screen_sprites = pygame.sprite.Group(tuple(self.genre_list) + (self.exit_button,) + (self.search_button,))
-
         #second screen
         self.second_screen_sprites = pygame.sprite.Group((self.exit_button,) + (self.back_button,))
 
@@ -113,7 +112,7 @@ class Controller:
 
             #update
             self.screen.fill((130, 210, 220))
-            self.screen.blit(self.logo, (180, 0))
+            self.screen.blit(self.logo, (150, 0))
             self.screen.blit(self.tmdb_logo, (850, 20))
             for button in self.genre_list:
                 button.update(y_offset)
@@ -125,7 +124,9 @@ class Controller:
 
     def secondScreenLoop(self):
         """
-        Subloop for the second screen of the program, and runs when the game state is "SECOND", displays movie data based on user filters from the first screen.
+        Subloop for the second screen of the program, and runs when the game state is "SECOND", displays movie data
+        based on chosen genres from the first screen. Movie data is blitted onto the background. Background moves
+        up and down on y-axis based on scroll wheel input.
         args: None
         return: None
         """
@@ -134,7 +135,7 @@ class Controller:
         results_list = results['results']
         print(results_list)
         directory = f'assets/{self.tempdir}/'
-        movie_data.getPosters(results, directory)
+        movie_data.get_posters(results, directory)
         y_position = 0
         while self.state == "SECOND":
             #check for events
@@ -163,7 +164,7 @@ class Controller:
             self.background.fill((130, 210, 220))
             self.background.blit(self.logo, (850, 0))
             self.background.blit(self.tmdb_logo, (850, 200))
-
+            #movie data
             for movie in results_list:
                 accum += 1
                 items = []
@@ -199,10 +200,8 @@ class Controller:
                 poster = pygame.transform.scale(poster, (167, 250))
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 300
-
             self.screen.blit(self.background, (0, y_position))
             self.second_screen_sprites.draw(self.screen)
-
 
             #redraw
             pygame.display.update()
