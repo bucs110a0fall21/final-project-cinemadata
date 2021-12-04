@@ -15,7 +15,7 @@
 ***
 
 ## Project Description *(Software Lead)*
-This is a program that takes user input based on genre and using selected genres, sends a request to the an API for films that have the attributes given by the user. It displays the movies in a graphical interface and the user is able to click on the "More Info" button to get a detailed description of the movie as well as where to buy, stream, or display if the movie is currently in theaters.
+This is a program that takes user input based on genre and using selected genres, sends a request to the an API for films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, and other relevant data.
 
 ***    
 

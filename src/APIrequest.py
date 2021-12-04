@@ -59,8 +59,8 @@ class APIrequest:
         Return:
             genre_id (list) list of dictionaries with genre names and ids
         '''
-        start = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
-        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=start)
+        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
         raw_list = json.loads(request.text)
         genre_id = raw_list['genres']
         print(genre_id)

@@ -19,8 +19,6 @@ class Controller:
         self.background = pygame.Surface((1080, 14400))
         self.font_name = pygame.font.get_default_font()
         self.screen.fill((130, 210, 220)) #background color
-        clock = pygame.time.Clock()
-        clock.tick(60)
         self.genre_list = pygame.sprite.Group()
         self.user_genre_buttons = pygame.sprite.Group()
         self.user_genre_list = []
@@ -79,8 +77,7 @@ class Controller:
                     if event.button == 5:
                         y_offset -= 15
                     #exit button
-                    if self.exit_button.rect.collidepoint(event.pos):
-                        if pygame.mouse.get_pressed()[0] == 1:
+                    if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             sys.exit()
                     #search button
                     elif self.search_button.rect.collidepoint(event.pos):
@@ -145,57 +142,62 @@ class Controller:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.exit_button.rect.collidepoint(event.pos):
-                        if pygame.mouse.get_pressed()[0] == 1:
+                    if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             sys.exit()
-                    if self.back_button.rect.collidepoint(event.pos):
-                        if pygame.mouse.get_pressed()[0] == 1:
+                    if self.back_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             self.state = "MAIN"
                     if event.button == 4:
                         y_position = min(y_position + 150, 0)
                     if event.button == 5:
-                            y_position = max(y_position -150, -5500)
+                        y_position = max(y_position -150, -5500)
 
 
             #update
             title_font = pygame.font.SysFont('arial', 30, True)
             standard_font = pygame.font.SysFont('arial', 15)
-            poster_y_pos = 0
             y_pos = 0
             x_pos = 200
+            poster_y_pos = 0
             accum = 0
+
             self.background.fill((130, 210, 220))
             self.background.blit(self.logo, (850, 0))
             self.background.blit(self.tmdb_logo, (850, 200))
 
             for movie in results_list:
                 accum += 1
+                items = []
                 temp_title = movie['title']
                 temp_description = movie['overview']
-
                 temp_date = movie['release_date']
+                temp_avg_vote = movie['vote_average']
+                temp_vote_count = movie['vote_count']
+                convert_str = [temp_description, temp_date, temp_avg_vote, temp_vote_count]
+                for i in convert_str:
+                    str(i)
                 temp_date = f'Release Date: {temp_date}'
-                temp_avg_vote = str(movie['vote_average'])
                 temp_avg_vote = f'Average Rating: {temp_avg_vote} / 10'
-                temp_vote_count = str(movie['vote_count'])
                 temp_vote_count = f'Vote Count: {temp_vote_count}'
+                #order temp_items is in determines order on screen
+                temp_items = [
+                    temp_date,
+                    temp_avg_vote,
+                    temp_vote_count,
+                    temp_description
+                ]
                 title = title_font.render(temp_title, True, (0, 0, 0))
-                description = standard_font.render(temp_description, True, (0, 0, 0))
-                date = standard_font.render(temp_date, True, (0, 0, 0))
-                avg_vote = standard_font.render(temp_avg_vote, True, (0, 0, 0))
-                vote_count = standard_font.render(temp_vote_count, True, (0, 0, 0))
-                items = [date, avg_vote, vote_count]
-
+                for i in temp_items:
+                    temp = standard_font.render(i, True, (0, 0, 0))
+                    items.append(temp)
                 self.background.blit(title, (x_pos, y_pos))
                 y_pos += 40
                 for item in items:
                     self.background.blit(item, (x_pos, y_pos))
                     y_pos += 20
-                self.background.blit(description, (x_pos, y_pos))
-                y_pos += 200
-                img_file = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg')
-                img_file = pygame.transform.scale(img_file, (167, 250))
-                self.background.blit(img_file, (0, poster_y_pos))
+                y_pos += 180
+                poster = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg')
+                poster = pygame.transform.scale(poster, (167, 250))
+                self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 300
 
             self.screen.blit(self.background, (0, y_position))
