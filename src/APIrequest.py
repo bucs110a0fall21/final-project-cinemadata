@@ -87,7 +87,7 @@ class APIrequest:
         """
         Retrieves the providers that are streaming the movie
         args: (str) movie_id
-        return: (str) providers
+        return: (str) output
         """
         payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
         request = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?", params=payload)
@@ -97,10 +97,13 @@ class APIrequest:
         else:
             providers = raw_list['results']
             try:
-                providers = providers['US']['flatrate'][0]['provider_name']
+                output = providers['US']['flatrate'][0]['provider_name']
             except KeyError:
-                providers = "None"
+                try:
+                    output = providers['US']['ads'][0]['provider_name']
+                except KeyError:
+                    output = "None"
             #for testing
             # print(providers)
             # print(request.url)
-            return providers
+            return output

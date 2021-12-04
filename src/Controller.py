@@ -130,6 +130,7 @@ class Controller:
         args: None
         return: None
         """
+        #retrieving movie data
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
         results_list = results['results']
