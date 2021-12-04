@@ -82,3 +82,25 @@ class APIrequest:
             url = 'https://image.tmdb.org/t/p/w500' + poster
             APIproxy.MoviePoster(url, tempdir + f'sample{counter}.jpg')
             counter += 1
+
+    def get_providers(self, movie_id):
+        """
+        Retrieves the providers that are streaming the movie
+        args: (str) movie_id
+        return: (str) providers
+        """
+        payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
+        request = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?", params=payload)
+        raw_list = json.loads(request.text)
+        if raw_list['results'] == {}:
+            pass
+        else:
+            providers = raw_list['results']
+            try:
+                providers = providers['US']['flatrate'][0]['provider_name']
+            except KeyError:
+                providers = "None"
+            #for testing
+            # print(providers)
+            # print(request.url)
+            return providers

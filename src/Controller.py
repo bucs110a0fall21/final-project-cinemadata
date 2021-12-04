@@ -133,7 +133,16 @@ class Controller:
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
         results_list = results['results']
-        print(results_list)
+        provider_list = []
+        for movie in results_list:
+            temp_movie_id = movie['id']
+            temp_providers = APIrequest.APIrequest.get_providers(self, temp_movie_id)
+            if temp_providers == None:
+                temp_providers = "None"
+            else:
+                pass
+            provider_list.append(temp_providers)
+        # print(provider_list)
         directory = f'assets/{self.tempdir}/'
         movie_data.get_posters(results, directory)
         y_position = 0
@@ -166,24 +175,27 @@ class Controller:
             self.background.blit(self.tmdb_logo, (850, 200))
             #movie data
             for movie in results_list:
-                accum += 1
                 items = []
                 temp_title = movie['title']
                 temp_description = movie['overview']
                 temp_date = movie['release_date']
                 temp_avg_vote = movie['vote_average']
                 temp_vote_count = movie['vote_count']
-                convert_str = [temp_description, temp_date, temp_avg_vote, temp_vote_count]
+                temp_provider = provider_list[accum]
+                accum += 1
+                convert_str = [temp_description, temp_date, temp_avg_vote, temp_vote_count, temp_provider]
                 for i in convert_str:
                     str(i)
-                temp_date = f'Release Date: {temp_date}'
-                temp_avg_vote = f'Average Rating: {temp_avg_vote} / 10'
-                temp_vote_count = f'Vote Count: {temp_vote_count}'
+                date = f'Release Date: {temp_date}'
+                avg_vote = f'Average Rating: {temp_avg_vote} / 10'
+                vote_count = f'Vote Count: {temp_vote_count}'
+                provider = f'Streaming On: {temp_provider}'
                 #order temp_items is in determines order on screen
                 temp_items = [
-                    temp_date,
-                    temp_avg_vote,
-                    temp_vote_count,
+                    date,
+                    avg_vote,
+                    vote_count,
+                    provider,
                     temp_description
                 ]
                 title = title_font.render(temp_title, True, (0, 0, 0))
@@ -195,7 +207,7 @@ class Controller:
                 for item in items:
                     self.background.blit(item, (x_pos, y_pos))
                     y_pos += 20
-                y_pos += 180
+                y_pos += 160
                 poster = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg')
                 poster = pygame.transform.scale(poster, (167, 250))
                 self.background.blit(poster, (0, poster_y_pos))
