@@ -1,5 +1,6 @@
 import pygame
 import sys
+import webbrowser
 from src import Button
 from src import APIrequest
 class Controller:
@@ -20,6 +21,7 @@ class Controller:
         self.screen.fill((130, 210, 220)) #background color
         self.genre_list = pygame.sprite.Group()
         self.user_genre_buttons = pygame.sprite.Group()
+        self.google_search_button = pygame.sprite.Group()
         self.user_genre_list = []
         self.user_selected_ids = []
         self.tempdir = tempdir
@@ -39,7 +41,7 @@ class Controller:
         #first screen
         self.first_screen_sprites = pygame.sprite.Group(tuple(self.genre_list) + (self.exit_button,) + (self.search_button,))
         #second screen
-        self.second_screen_sprites = pygame.sprite.Group((self.exit_button,) + (self.back_button,))
+        self.second_screen_sprites = pygame.sprite.Group((self.google_search_button,) + (self.exit_button,) + (self.back_button,))
 
     def mainLoop(self):
         """
@@ -131,36 +133,47 @@ class Controller:
         return: None
         """
         #retrieving movie data
+        x_pos = 200
+        y_pos = 200
+        accum = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
         results_list = results['results']
         provider_list = []
         for movie in results_list:
+            accum += 1
             temp_movie_id = movie['id']
             temp_providers = APIrequest.APIrequest.get_providers(self, temp_movie_id)
-            if temp_providers == None:
-                temp_providers = "None"
-            else:
-                pass
             provider_list.append(temp_providers)
+            button = Button.Button(x_pos, y_pos, 'assets/buttonicon.png', 1, "Google Search", movie['title'])
+            y_pos += 300
+            self.google_search_button.add(button)
         # print(provider_list)
         directory = f'assets/{self.tempdir}/'
         movie_data.get_posters(results, directory)
         y_position = 0
         while self.state == "SECOND":
             #check for events
+            y_offset = 0
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
-                            sys.exit()
+                        sys.exit()
                     if self.back_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
-                            self.state = "MAIN"
+                        self.state = "MAIN"
+                    for button in self.google_search_button:
+                        if button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
+                            webbrowser.open(f'https://www.google.com/search?q={button.genre}')
+
                     if event.button == 4:
-                        y_position = min(y_position + 150, 0)
+                        y_position += 150
+                        y_offset += 150
                     if event.button == 5:
-                        y_position = max(y_position -150, -5500)
+                        y_position -= 150
+                        y_offset -= 150
+
 
 
             #update
@@ -170,7 +183,7 @@ class Controller:
             x_pos = 200
             poster_y_pos = 0
             accum = 0
-
+            self.screen.fill((130, 210, 220))
             self.background.fill((130, 210, 220))
             self.background.blit(self.logo, (850, 0))
             self.background.blit(self.tmdb_logo, (850, 200))
@@ -214,10 +227,15 @@ class Controller:
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 300
             self.screen.blit(self.background, (0, y_position))
+            if y_position < 5000:
+                for button in self.google_search_button:
+                    button.update(y_offset)
+            else:
+                pass
             self.second_screen_sprites.draw(self.screen)
-
+            self.google_search_button.draw(self.screen)
             #redraw
-            pygame.display.update()
+            pygame.display.flip()
 
     def thirdScreenLoop(self):
         """
