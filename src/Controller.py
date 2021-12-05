@@ -140,6 +140,8 @@ class Controller:
         results = movie_data.apiRequest()
         results_list = results['results']
         provider_list = []
+        for button in self.google_search_button:
+            button.kill()
         for movie in results_list:
             accum += 1
             temp_movie_id = movie['id']
