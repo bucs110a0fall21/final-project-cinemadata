@@ -169,10 +169,10 @@ class Controller:
                         if button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             webbrowser.open(f'https://www.google.com/search?q={button.genre}')
 
-                    if event.button == 4:
+                    if event.button == 4 and y_position < 0:
                         y_position += 150
                         y_offset += 150
-                    if event.button == 5:
+                    if event.button == 5 and y_position > -5200:
                         y_position -= 150
                         y_offset -= 150
 
@@ -229,11 +229,8 @@ class Controller:
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 300
             self.screen.blit(self.background, (0, y_position))
-            if y_position < 5000:
-                for button in self.google_search_button:
-                    button.update(y_offset)
-            else:
-                pass
+            for button in self.google_search_button:
+                button.update(y_offset)
             self.second_screen_sprites.draw(self.screen)
             self.google_search_button.draw(self.screen)
             #redraw
