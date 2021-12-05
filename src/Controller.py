@@ -65,6 +65,7 @@ class Controller:
         """
         x_pos = 15
         y_pos = 200
+        y_limit = 0
         while self.state == "MAIN":
             y_offset = 0
             #checking for events
@@ -73,10 +74,12 @@ class Controller:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     #scrolling
-                    if event.button == 4:
+                    if event.button == 4 and y_limit > 0:
                         y_offset += 15
-                    if event.button == 5:
+                        y_limit -= 15
+                    if event.button == 5 and y_limit < 390:
                         y_offset -= 15
+                        y_limit += 15
                     #exit button
                     if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             sys.exit()
@@ -175,8 +178,6 @@ class Controller:
                     if event.button == 5 and y_position > -5200:
                         y_position -= 150
                         y_offset -= 150
-
-
 
             #update
             title_font = pygame.font.SysFont('arial', 30, True)
