@@ -26,30 +26,9 @@ class APIrequest:
         '''
         payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': self.user_genres, 'language': 'en-US'}
         search_request = requests.get("https://api.themoviedb.org/3/discover/movie?", params=payload)
-        print(search_request.url)
+        # print(search_request.url)
         raw_data = json.loads(search_request.text)
         return raw_data
-
-    # def get_genre(self):
-    #     '''
-    #     gets data and creates a list of all genres
-    #     Args:
-    #         self
-    #     Return:
-    #         (list)all_genres, list of all genres
-    #     '''
-    #     all_genres = []
-    #     payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
-    #     request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
-    #     raw_list = json.loads(request.text)
-    #     genres = raw_list['genres']
-    #     length = len(genres)
-    #     for i in range(length):
-    #         temp = genres[i]['name']
-    #         all_genres.append(temp)
-    #     print(genres)
-    #     print(all_genres)
-    #     return all_genres
 
     def get_id(self):
         '''
@@ -63,7 +42,7 @@ class APIrequest:
         request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
         raw_list = json.loads(request.text)
         genre_id = raw_list['genres']
-        print(genre_id)
+        # print(genre_id)
         return genre_id
     
     def get_posters(self, movie_results, tempdir):

@@ -54,8 +54,6 @@ class Controller:
                 self.firstScreenLoop()
             elif self.state == "SECOND":
                 self.secondScreenLoop()
-            elif self.state == "THIRD":
-                self.thirdScreenLoop()
 
     def firstScreenLoop(self):
         """
@@ -97,8 +95,8 @@ class Controller:
                                 self.user_genre_list.append(button.label)
                                 self.user_selected_ids.append(button.id)
                                 # printing for testing purposes
-                                print(self.user_genre_list)
-                                print(self.user_selected_ids)
+                                # print(self.user_genre_list)
+                                # print(self.user_selected_ids)
                     #left side buttons
                     y_pos = 200
                     for button in self.user_genre_buttons:
@@ -107,8 +105,8 @@ class Controller:
                             self.user_genre_list.remove(button.label)
                             self.user_selected_ids.remove(button.id)
                             # printing for testing purposes
-                            print(self.user_genre_list)
-                            print(self.user_selected_ids)
+                            # print(self.user_genre_list)
+                            # print(self.user_selected_ids)
                         else:
                             button.rect.y = y_pos
                             y_pos += 55
@@ -135,8 +133,9 @@ class Controller:
         return: None
         """
         #retrieving movie data
-        x_pos = 12
-        y_pos = 250
+        x_pos = 12  #x position for buttons
+        y_pos = 250 #y position for buttons
+        y_pos_screen = 0 #y position for screen
         accum = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
@@ -155,7 +154,6 @@ class Controller:
         # print(provider_list)
         directory = f'assets/{self.tempdir}/'
         movie_data.get_posters(results, directory)
-        y_position = 0
         while self.state == "SECOND":
             #check for events
             y_offset = 0
@@ -174,11 +172,11 @@ class Controller:
                         if button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             webbrowser.open(f'https://www.google.com/search?q={button.genre}')
                     #scrolling
-                    if event.button == 4 and y_position < 0:
-                        y_position += 150
+                    if event.button == 4 and y_pos_screen < 0:
+                        y_pos_screen += 150
                         y_offset += 150
-                    if event.button == 5 and y_position > -5200:
-                        y_position -= 150
+                    if event.button == 5 and y_pos_screen > -5200:
+                        y_pos_screen -= 150
                         y_offset -= 150
 
             #update
@@ -207,14 +205,16 @@ class Controller:
                 total_accum = 0
                 description_str = ""
                 str_len = len(temp_description)
+                #pygame doesn't allow multi line text, lines 211 - 222 splits the text into strings of 110
+                #characters, and adds the splitted text into a list
                 for ch in temp_description:
                     total_accum += 1
                     if total_accum == str_len:
                         temp_description_list.append(description_str)
-                    elif ch_accum < 115:
+                    elif ch_accum < 110:    #maximum number of characters per line, numbers in line 216 and 219 must be the same
                         description_str += ch
                         ch_accum += 1
-                    elif ch_accum >= 115:
+                    elif ch_accum >= 110:
                         description_str += ch
                         temp_description_list.append(description_str)
                         description_str = ""
@@ -245,6 +245,7 @@ class Controller:
                     self.background.blit(item, (x_pos, y_pos))
                     y_pos += 20 #text spacing for each movies details
                 y_pos += 10
+                #blitting each line created from lines 211 - 212
                 for line in temp_description_list:
                     temp_line = standard_font.render(line, True, (0, 0, 0))
                     self.background.blit(temp_line, (x_pos, y_pos))
@@ -258,31 +259,10 @@ class Controller:
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 325 #poster spacing
 
-            self.screen.blit(self.background, (0, y_position))
+            self.screen.blit(self.background, (0, y_pos_screen))
             for button in self.google_search_button:
                 button.update(y_offset)
             self.second_screen_sprites.draw(self.screen)
             self.google_search_button.draw(self.screen)
             #redraw
             pygame.display.flip()
-
-    # def thirdScreenLoop(self):
-    #     """
-    #     Subloop for the third screen of the program, and runs when the game state is "THIRD", displays more information about the movie chosen from the second screen.
-    #     args: None
-    #     return: None
-    #     """
-    #     while self.state == "THIRD":
-    #         #check for events
-    #         for event in pygame.event.get():
-    #             if event.type == pygame.QUIT:
-    #                 sys.exit()
-    #
-    #         #update
-    #         self.screen.fill((130, 210, 220))
-    #         self.screen.blit(self.logo, (467, 0))
-    #         self.screen.blit(self.tmdb_logo, (850, 20))
-    #
-    #         #redraw
-    #         pygame.display.update()
-
