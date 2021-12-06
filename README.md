@@ -123,8 +123,8 @@ The Project is broken down into the following file structure:
 ### Software Lead - Kevin Wu
 
 Integrated the button and APIrequest models into the GUI, completed scrolling feature, caught various bugs that came up 
-during the development process, cleaned up code, and was responsible for integrating the models into the GUI for the 
-first and second screens.
+during the development process, cleaned up code, worked with back end and was responsible for integrating the models 
+into the GUI for the first and second screens.
 
 ### Front End Specialist - Wilson Huang
 
@@ -133,7 +133,8 @@ models into the GUI.
 
 ### Back End Specialist - Daniel Zheng
 
-Created the Button, APIrequest, and APIproxy classes and methods within them. Helped implement the models into the GUI.
+Created the Button, APIrequest, and APIproxy classes and methods within them. Worked with front end and software lead
+to implement models into GUI.
 
 ## Testing *(Software Lead)*
 * Tested code each time a new feature was added and tested all features, so long as they were implemented, as per the ATP.
