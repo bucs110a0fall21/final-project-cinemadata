@@ -15,7 +15,9 @@
 ***
 
 ## Project Description *(Software Lead)*
-This is a program that takes user input based on genre and using selected genres, sends a request to the an API for films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, and other relevant data.
+This is a program that takes user input based on genre and using selected genres, sends a request to the an API for 
+films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, 
+and other relevant data.
 
 ***    
 
@@ -45,8 +47,22 @@ This is a program that takes user input based on genre and using selected genres
 * Contains:
 * Information gathered from API about specific movie
 * Also includes the previous back and scroll wheel
-
-
+![](assets/UI.png)
+* Main Menu Screen
+* Selection dropdown box
+* Scrolling screen(scroll wheel is wish feature)
+* Search button
+* Remove button
+* Selectable genres for the movie
+![](assets/UI2.png)
+* Second Screen (Recommended movies)
+* Contains:
+* Poster for movies
+* Back button
+* Exit Button
+* Scrolling screen
+* Google Search button
+* Info on movies
 ***        
 
 ## Program Design *(Backend Specialist)*
@@ -81,13 +97,23 @@ This is a program that takes user input based on genre and using selected genres
 The Project is broken down into the following file structure:
 * main.py
 * src
+    * APIproxy.py
+    * APIrequest.py
     * Button.py
     * Controller.py
-    * APIrequest.py
 * assets
-    * <all of your media, i.e. images, font files, etc, should go here)
+    * buttonicon.png
+    * tmdblogo.png
+    * screenlogo.png
+    * UI.png
+    * UI2.png
+    * <class_diagram>
 * etc
-    * <This is a catch all folder for things that are not part of your project, but you want to keep with your project. Your demo video should go here.>
+    * foldercontents.txt
+    * genrebutton.png
+    * moviedb.png
+    * searchbutton.png
+    * selectbutton.png
 
 ***
 
@@ -96,15 +122,18 @@ The Project is broken down into the following file structure:
 
 ### Software Lead - Kevin Wu
 
-Integrated the button and APIrequest models into the GUI, completed scrolling feature, caught various bugs that came up during the development process, and cleaned up code where needed.
+Integrated the button and APIrequest models into the GUI, completed scrolling feature, caught various bugs that came up 
+during the development process, cleaned up code, and was responsible for integrating the models into the GUI for the 
+first and second screens.
 
 ### Front End Specialist - Wilson Huang
 
-Created the scrolling feature, main, second, and third screens code and GUIs. Worked with back-end to create the buttons. 
+Created controller class, set up the first and second screen loops, and worked with the back end specialist to integrate 
+models into the GUI.
 
 ### Back End Specialist - Daniel Zheng
 
-Created the Button and APIrequest classes, and helped implement the models into the GUI.
+Created the Button, APIrequest, and APIproxy classes and methods within them. Helped implement the models into the GUI.
 
 ## Testing *(Software Lead)*
 * Tested code each time a new feature was added and tested all features, so long as they were implemented, as per the ATP.
@@ -114,11 +143,14 @@ Created the Button and APIrequest classes, and helped implement the models into 
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Open terminal, navigate to folder, and type 'python3 main.py' | Program starts and displays main screen |    |
-|  2  | Hover mouse over program window and mousewheel up in main screen | Genre buttons in center move up  |    |
-|  3  | Hover mouse over program window and mousewheel down in main screen |  Genre buttons in center move down  |    |
+|  1  | Open terminal, navigate to folder, and type 'python main.py' | Program starts and displays main screen |    |
+|  2  | Hover mouse over program window and mousewheel down in main screen |  Genre buttons in center move down  |    |
+|  3  | Hover mouse over program window and mousewheel up in main screen | Genre buttons in center move up  |    |
 |  4  | Left click on center button(s) with genres in main screen  | Button appears on the left with respective genre, indicating genre is added to selection |    |
 |  5  | Left click on button(s) with selected genre(s) on the left in main screen | Button disappears, indicating that genre has been removed from selection |    |
 |  6  | Left click on 'Search' button in the bottom right, above the 'Exit' button  | Window changes to different screen showing list of movies with matching genres  |    |
-|  7  | Left click on 'Back button in the bottom right, above the 'Exit' button  |  Returns to previous screen  |    |
-|  8  | Left click on 'Exit' Button in the bottom right  |  Program closes  |    |
+|  7  | Hover mouse over program window and mousewheel down in second screen  |  List of movies in center move down  |    |
+|  8  | Hover mouse over program window and mousewheel up in second screen  |  List of movies in center move up  |    |
+|  9  | Left click on a 'Google Search' button on the left, located below each movie poster |  Web browser opens with a Google search searching for the name of the movie directly above the button  |    |
+|  10  | Left click on 'Back' button in the bottom right, above the 'Exit' button  |  Returns to previous screen  |    |
+|  11  | Left click on 'Exit' Button in the bottom right  |  Program closes  |    |

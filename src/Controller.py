@@ -175,7 +175,7 @@ class Controller:
                     if event.button == 4 and y_pos_screen < 0:
                         y_pos_screen += 150
                         y_offset += 150
-                    if event.button == 5 and y_pos_screen > -5200:
+                    if event.button == 5 and y_pos_screen > -5750:
                         y_pos_screen -= 150
                         y_offset -= 150
 
