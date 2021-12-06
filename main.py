@@ -10,7 +10,7 @@ def main():
 	print("Frontend is:", team["frontend"])
 	temp_directory = tempfile.TemporaryDirectory(dir = 'assets')
 	directory_name = temp_directory.name.split("\\")
-	main_window = Controller.Controller(r[1])
+	main_window = Controller.Controller(directory_name[1])
 	main_window.mainLoop()
 	directory_name.cleanup()
 main()
