@@ -45,8 +45,8 @@ This is a program that takes user input based on genre and using selected genres
 * Contains:
 * Information gathered from API about specific movie
 * Also includes the previous back and scroll wheel
-
-
+![](assets/UI.png)
+![](assets/UI2.png)
 ***        
 
 ## Program Design *(Backend Specialist)*
