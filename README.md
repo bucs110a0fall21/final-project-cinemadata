@@ -16,8 +16,10 @@
 
 ## Project Description *(Software Lead)*
 This is a program that takes user input based on genre and using selected genres, sends a request to the an API for 
-films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, 
-and other relevant data.
+films that have the genres chosen by the user. The user is able to select genres by pressing the buttons with the
+respective genre on them, and can remove genres by clicking on the button that appears on the left. When the user has
+made their selections, they can press the 'Search' button that then leads to A list of movies with matching genres are 
+displayed with their posters, titles, and other relevant data.
 
 ***    
 
@@ -89,8 +91,7 @@ and other relevant data.
     * View
         * pygame
             * Used to create the visuals
-    
-    
+*** 
 
 ## Project Structure *(Software Lead)*
 
@@ -114,7 +115,6 @@ The Project is broken down into the following file structure:
     * moviedb.png
     * searchbutton.png
     * selectbutton.png
-
 ***
 
 ## Tasks and Responsibilities *(Software Lead)*
