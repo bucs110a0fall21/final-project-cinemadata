@@ -45,8 +45,22 @@ This is a program that takes user input based on genre and using selected genres
 * Contains:
 * Information gathered from API about specific movie
 * Also includes the previous back and scroll wheel
-
-
+![](assets/UI.png)
+* Main Menu Screen
+* Selection dropdown box
+* Scrolling screen(scroll wheel is wish feature)
+* Search button
+* Remove button
+* Selectable genres for the movie
+![](assets/UI2.png)
+* Second Screen (Recommended movies)
+* Contains:
+* Poster for movies
+* Back button
+* Exit Button
+* Scrolling screen
+* Google Search button
+* Info on movies
 ***        
 
 ## Program Design *(Backend Specialist)*

@@ -2,7 +2,13 @@ import requests
 import pygame
 class MoviePoster(pygame.sprite.Sprite):
     def __init__(self, url, save_path):
-        #requests for image and saves image to path being used
+        '''
+        requests for image and saves image to path/folder being used
+        Args:
+            self
+            url (str) the url used to get the image from the API
+            save_path (str) the directory that will be used to save the image will be saved to and sets file name of the saved image
+        '''
         super().__init__()
         self.url = url
         self.save_path = save_path
