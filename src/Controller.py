@@ -110,7 +110,6 @@ class Controller:
                             button.rect.y = y_pos
                             y_pos += 55
 
-
             #update
             self.screen.fill((130, 210, 220))
             self.screen.blit(self.logo, (150, 0))
@@ -181,8 +180,8 @@ class Controller:
             #update
             title_font = pygame.font.SysFont('arial', 30, True)
             standard_font = pygame.font.SysFont('arial', 15)
-            y_pos = 0
-            x_pos = 200
+            y_pos = 0   #starting y position for all items being blitted
+            x_pos = 200 #starting x position for text
             poster_y_pos = 0
             current_iter = 0
             self.screen.fill((130, 210, 220))
@@ -198,7 +197,6 @@ class Controller:
                 temp_vote_count = movie['vote_count']
                 temp_provider = provider_list[current_iter]
                 temp_description = movie['overview']
-                # print(temp_description)
                 temp_description_list = []
                 ch_accum = 0
                 total_accum = 0
@@ -219,6 +217,7 @@ class Controller:
                         description_str = ""
                         ch_accum = 0
                 current_iter += 1
+                #converting data from API into strings and formatting them for the program
                 convert_str = [temp_date, temp_avg_vote, temp_vote_count, temp_provider]
                 for i in convert_str:
                     str(i)
@@ -253,11 +252,11 @@ class Controller:
                 for line in temp_description_list:
                     y_pos -= 20
                 y_pos += 205   #text spacing between movies, if poster_y_pos changes, change this value by the same amount
+                #blitting posters
                 poster = pygame.image.load(f'assets/{self.tempdir}/sample{current_iter-1}.jpg').convert_alpha()
                 poster = pygame.transform.scale(poster, (167, 250))
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 325 #poster spacing
-
             self.screen.blit(self.background, (0, y_pos_screen))
             for button in self.google_search_button:
                 button.update(y_offset)
