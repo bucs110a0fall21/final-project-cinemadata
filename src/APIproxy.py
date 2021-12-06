@@ -11,10 +11,3 @@ class MoviePoster(pygame.sprite.Sprite):
             with open(save_path, 'wb') as file:
                 file.write(response.content)
             file.close()
-
-    #
-    # def resize(self):
-    #     # Parameters of transform.scale = (surface, size(width, height), destination surface)
-    #     self.image = pygame.image.load(self.save_path)
-    #     self.image = pygame.transform.scale(self.image, (167, 250))
-    #     self.rect = self.image.get_rect()
