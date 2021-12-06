@@ -17,7 +17,6 @@ class Controller:
         pygame.display.set_caption("SuggestCinema")
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.Surface((1080, 14400))
-        self.font_name = pygame.font.get_default_font()
         self.screen.fill((130, 210, 220)) #background color
         self.genre_list = pygame.sprite.Group()
         self.user_genre_buttons = pygame.sprite.Group()
@@ -30,6 +29,7 @@ class Controller:
         # setting up buttons
         x_pos = 467
         y_pos = 0
+        self.y_limit = 0
         for genre in raw_genre_list:
             y_pos += 55
             self.genre_list.add(Button.Button(x_pos, y_pos, "assets/buttonicon.png", 1, genre['name'], genre['name'], genre['id']))
@@ -65,7 +65,6 @@ class Controller:
         """
         x_pos = 15
         y_pos = 200
-        y_limit = 0
         while self.state == "MAIN":
             y_offset = 0
             #checking for events
@@ -74,12 +73,12 @@ class Controller:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     #scrolling
-                    if event.button == 4 and y_limit > 0:
+                    if event.button == 4 and self.y_limit > 0:
                         y_offset += 15
-                        y_limit -= 15
-                    if event.button == 5 and y_limit < 390:
+                        self.y_limit -= 15
+                    if event.button == 5 and self.y_limit < 390:
                         y_offset -= 15
-                        y_limit += 15
+                        self.y_limit += 15
                     #exit button
                     if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             sys.exit()
@@ -136,8 +135,8 @@ class Controller:
         return: None
         """
         #retrieving movie data
-        x_pos = 200
-        y_pos = 200
+        x_pos = 12
+        y_pos = 250
         accum = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
@@ -151,7 +150,7 @@ class Controller:
             temp_providers = APIrequest.APIrequest.get_providers(self, temp_movie_id)
             provider_list.append(temp_providers)
             button = Button.Button(x_pos, y_pos, 'assets/buttonicon.png', 1, "Google Search", movie['title'])
-            y_pos += 300
+            y_pos += 325    #if poster_y_pos changes, change this value by the same amount
             self.google_search_button.add(button)
         # print(provider_list)
         directory = f'assets/{self.tempdir}/'
@@ -164,14 +163,17 @@ class Controller:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    #exit button
                     if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                         sys.exit()
+                    #back button
                     if self.back_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                         self.state = "MAIN"
+                    #google search buttons
                     for button in self.google_search_button:
                         if button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
                             webbrowser.open(f'https://www.google.com/search?q={button.genre}')
-
+                    #scrolling
                     if event.button == 4 and y_position < 0:
                         y_position += 150
                         y_offset += 150
@@ -194,13 +196,31 @@ class Controller:
             for movie in results_list:
                 items = []
                 temp_title = movie['title']
-                temp_description = movie['overview']
                 temp_date = movie['release_date']
                 temp_avg_vote = movie['vote_average']
                 temp_vote_count = movie['vote_count']
                 temp_provider = provider_list[accum]
+                temp_description = movie['overview']
+                # print(temp_description)
+                temp_description_list = []
+                ch_accum = 0
+                total_accum = 0
+                description_str = ""
+                str_len = len(temp_description)
+                for ch in temp_description:
+                    total_accum += 1
+                    if total_accum == str_len:
+                        temp_description_list.append(description_str)
+                    elif ch_accum < 115:
+                        description_str += ch
+                        ch_accum += 1
+                    elif ch_accum >= 115:
+                        description_str += ch
+                        temp_description_list.append(description_str)
+                        description_str = ""
+                        ch_accum = 0
                 accum += 1
-                convert_str = [temp_description, temp_date, temp_avg_vote, temp_vote_count, temp_provider]
+                convert_str = [temp_date, temp_avg_vote, temp_vote_count, temp_provider]
                 for i in convert_str:
                     str(i)
                 date = f'Release Date: {temp_date}'
@@ -213,22 +233,31 @@ class Controller:
                     avg_vote,
                     vote_count,
                     provider,
-                    temp_description
                 ]
+                #displaying movie data and posters
                 title = title_font.render(temp_title, True, (0, 0, 0))
                 for i in temp_items:
                     temp = standard_font.render(i, True, (0, 0, 0))
                     items.append(temp)
                 self.background.blit(title, (x_pos, y_pos))
-                y_pos += 40
+                y_pos += 40 #text spacing between title and movie details
                 for item in items:
                     self.background.blit(item, (x_pos, y_pos))
+                    y_pos += 20 #text spacing for each movies details
+                y_pos += 10
+                for line in temp_description_list:
+                    temp_line = standard_font.render(line, True, (0, 0, 0))
+                    self.background.blit(temp_line, (x_pos, y_pos))
                     y_pos += 20
-                y_pos += 160
-                poster = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg')
+                y_pos -= 10
+                for line in temp_description_list:
+                    y_pos -= 20
+                y_pos += 205   #text spacing between movies, if poster_y_pos changes, change this value by the same amount
+                poster = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg').convert_alpha()
                 poster = pygame.transform.scale(poster, (167, 250))
                 self.background.blit(poster, (0, poster_y_pos))
-                poster_y_pos += 300
+                poster_y_pos += 325 #poster spacing
+
             self.screen.blit(self.background, (0, y_position))
             for button in self.google_search_button:
                 button.update(y_offset)
@@ -237,23 +266,23 @@ class Controller:
             #redraw
             pygame.display.flip()
 
-    def thirdScreenLoop(self):
-        """
-        Subloop for the third screen of the program, and runs when the game state is "THIRD", displays more information about the movie chosen from the second screen.
-        args: None
-        return: None
-        """
-        while self.state == "THIRD":
-            #check for events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-
-            #update
-            self.screen.fill((130, 210, 220))
-            self.screen.blit(self.logo, (467, 0))
-            self.screen.blit(self.tmdb_logo, (850, 20))
-
-            #redraw
-            pygame.display.update()
+    # def thirdScreenLoop(self):
+    #     """
+    #     Subloop for the third screen of the program, and runs when the game state is "THIRD", displays more information about the movie chosen from the second screen.
+    #     args: None
+    #     return: None
+    #     """
+    #     while self.state == "THIRD":
+    #         #check for events
+    #         for event in pygame.event.get():
+    #             if event.type == pygame.QUIT:
+    #                 sys.exit()
+    #
+    #         #update
+    #         self.screen.fill((130, 210, 220))
+    #         self.screen.blit(self.logo, (467, 0))
+    #         self.screen.blit(self.tmdb_logo, (850, 20))
+    #
+    #         #redraw
+    #         pygame.display.update()
 
