@@ -97,8 +97,8 @@ class Controller:
                                 self.user_genre_list.append(button.label)
                                 self.user_selected_ids.append(button.id)
                                 # printing for testing purposes
-                                print(self.user_genre_list)
-                                print(self.user_selected_ids)
+                                # print(self.user_genre_list)
+                                # print(self.user_selected_ids)
                     #left side buttons
                     y_pos = 200
                     for button in self.user_genre_buttons:
@@ -107,8 +107,8 @@ class Controller:
                             self.user_genre_list.remove(button.label)
                             self.user_selected_ids.remove(button.id)
                             # printing for testing purposes
-                            print(self.user_genre_list)
-                            print(self.user_selected_ids)
+                            # print(self.user_genre_list)
+                            # print(self.user_selected_ids)
                         else:
                             button.rect.y = y_pos
                             y_pos += 55
@@ -211,10 +211,10 @@ class Controller:
                     total_accum += 1
                     if total_accum == str_len:
                         temp_description_list.append(description_str)
-                    elif ch_accum < 115:
+                    elif ch_accum < 110:
                         description_str += ch
                         ch_accum += 1
-                    elif ch_accum >= 115:
+                    elif ch_accum >= 110:
                         description_str += ch
                         temp_description_list.append(description_str)
                         description_str = ""
