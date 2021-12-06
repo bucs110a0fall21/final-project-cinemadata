@@ -8,21 +8,17 @@ class APIrequest:
 
     def __init__(self, user_genres):
         '''
-        saves the current list of selected genres to the object
-        Args:
-            self
-            (list) user_genres, list of genre ids that will be sent to the api
-        Return: none
+        Saves the current list of selected genres to the object
+        args: (list) user_genres - list of genre ids that will be sent to the api
+        return: None
         '''
         self.user_genres = user_genres
 
     def apiRequest(self):
         '''
-        searches for movies with the selected genres
-        Args:
-            self
-        Return:
-            (dict) raw_data, converted search results from api
+        Searches for movies with the selected genres
+        args: None
+        return: (dict) raw_data - converted search results from api
         '''
         payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': self.user_genres, 'language': 'en-US'}
         search_request = requests.get("https://api.themoviedb.org/3/discover/movie?", params=payload)
@@ -32,11 +28,9 @@ class APIrequest:
 
     def get_id(self):
         '''
-        gets the list of dictionaries with each dictionary containing a genre's name and id
-        Args:
-            self
-        Return:
-            (list) genre_id, list of dictionaries with genre names and ids
+        Gets the list of dictionaries with each dictionary containing a genre's name and id
+        args: None
+        return: (list) genre_id - list of dictionaries with genre names and ids
         '''
         payload = {'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'language' : 'en-US'}
         request = requests.get("https://api.themoviedb.org/3/genre/movie/list?", params=payload)
@@ -48,11 +42,10 @@ class APIrequest:
     def get_posters(self, movie_results, tempdir):
         '''
         Retrieves the poster image from the API and saves it to the temporary file
-        Args:
-            self
+        args:
             (list) movie_results
             (str) tempdir
-        Return:
+        return:
             None
         '''
         counter = 0 

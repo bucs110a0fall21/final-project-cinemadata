@@ -3,15 +3,15 @@ import pygame
 class Button(pygame.sprite.Sprite):
     def __init__(self, x, y, img_file, scale, label, genre = None, id = None):
         '''
-        assigns all initial values to a button object and creates its image
-        Args:
-            x (int) - x pos of button
-            y (int) - y pos of button
-            img_file (int) - image file that gets loaded
-            label (str) - text that goes on top of the image
-            genre (str) - movie genre if it is a genre button
-            id (int) - genre id of the genre
-        return: none
+        Assigns all initial values to a button object and creates its image
+        args:
+            (int) x - x pos of button
+            (int) y - y pos of button
+            (int) img_file - image file that gets loaded
+            (str) label - text that goes on top of the image
+            (str) genre - movie genre if it is a genre button
+            (int) id - genre id of the genre
+        return: None
         '''
         super().__init__()
         #rectangle and surface
@@ -33,12 +33,11 @@ class Button(pygame.sprite.Sprite):
         self.id = id
         self.genre = genre
 
-    def update(self, y):
+    def update(self, y_offset):
         '''
-        updates the position of the button to new values
-        Args:
-            y (int) new y pos
-        Return: none
+        Updates the position of the button to new values
+        args: (int) y_offset - new y offset of button, added to current y position of button
+        return: None
         '''
-        self.y = y
-        self.rect.y += self.y
+        self.y_offset = y_offset
+        self.rect.y += self.y_offset

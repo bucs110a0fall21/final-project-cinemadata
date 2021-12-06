@@ -135,7 +135,7 @@ class Controller:
         x_pos = 12  #x position for buttons
         y_pos = 250 #y position for buttons
         y_pos_screen = 0 #y position for screen
-        accum = 0
+        current_iter = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
         results = movie_data.apiRequest()
         results_list = results['results']
@@ -143,7 +143,7 @@ class Controller:
         for button in self.google_search_button:
             button.kill()
         for movie in results_list:
-            accum += 1
+            current_iter += 1
             temp_movie_id = movie['id']
             temp_providers = APIrequest.APIrequest.get_providers(self, temp_movie_id)
             provider_list.append(temp_providers)
@@ -184,7 +184,7 @@ class Controller:
             y_pos = 0
             x_pos = 200
             poster_y_pos = 0
-            accum = 0
+            current_iter = 0
             self.screen.fill((130, 210, 220))
             self.background.fill((130, 210, 220))
             self.background.blit(self.logo, (850, 0))
@@ -196,7 +196,7 @@ class Controller:
                 temp_date = movie['release_date']
                 temp_avg_vote = movie['vote_average']
                 temp_vote_count = movie['vote_count']
-                temp_provider = provider_list[accum]
+                temp_provider = provider_list[current_iter]
                 temp_description = movie['overview']
                 # print(temp_description)
                 temp_description_list = []
@@ -218,7 +218,7 @@ class Controller:
                         temp_description_list.append(description_str)
                         description_str = ""
                         ch_accum = 0
-                accum += 1
+                current_iter += 1
                 convert_str = [temp_date, temp_avg_vote, temp_vote_count, temp_provider]
                 for i in convert_str:
                     str(i)
@@ -253,7 +253,7 @@ class Controller:
                 for line in temp_description_list:
                     y_pos -= 20
                 y_pos += 205   #text spacing between movies, if poster_y_pos changes, change this value by the same amount
-                poster = pygame.image.load(f'assets/{self.tempdir}/sample{accum-1}.jpg').convert_alpha()
+                poster = pygame.image.load(f'assets/{self.tempdir}/sample{current_iter-1}.jpg').convert_alpha()
                 poster = pygame.transform.scale(poster, (167, 250))
                 self.background.blit(poster, (0, poster_y_pos))
                 poster_y_pos += 325 #poster spacing
