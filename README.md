@@ -15,7 +15,9 @@
 ***
 
 ## Project Description *(Software Lead)*
-This is a program that takes user input based on genre and using selected genres, sends a request to the an API for films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, and other relevant data.
+This is a program that takes user input based on genre and using selected genres, sends a request to the an API for 
+films that have the genres chosen by the user. The movies with matching genres are displayed with their posters, titles, 
+and other relevant data.
 
 ***    
 
@@ -115,13 +117,23 @@ This is a program that takes user input based on genre and using selected genres
 The Project is broken down into the following file structure:
 * main.py
 * src
+    * APIproxy.py
+    * APIrequest.py
     * Button.py
     * Controller.py
-    * APIrequest.py
 * assets
-    * <all of your media, i.e. images, font files, etc, should go here)
+    * buttonicon.png
+    * tmdblogo.png
+    * screenlogo.png
+    * UI.png
+    * UI2.png
+    * <class_diagram>
 * etc
-    * <This is a catch all folder for things that are not part of your project, but you want to keep with your project. Your demo video should go here.>
+    * foldercontents.txt
+    * genrebutton.png
+    * moviedb.png
+    * searchbutton.png
+    * selectbutton.png
 
 ***
 
