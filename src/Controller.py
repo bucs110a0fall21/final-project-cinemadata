@@ -139,7 +139,7 @@ class Controller:
         y_pos_screen = 0 #y position for screen
         current_iter = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
-        results = movie_data.apiRequest()
+        results = movie_data.api_request()
         results_list = results['results']
         provider_list = []
         for button in self.google_search_button:

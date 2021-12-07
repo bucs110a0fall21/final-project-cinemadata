@@ -14,7 +14,7 @@ class APIrequest:
         '''
         self.user_genres = user_genres
 
-    def apiRequest(self):
+    def api_request(self):
         '''
         Searches for movies with the selected genres
         args: None
