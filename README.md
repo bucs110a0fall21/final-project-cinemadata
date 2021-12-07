@@ -68,6 +68,51 @@ displayed with their posters, titles, and other relevant data.
 ***        
 
 ## Program Design *(Backend Specialist)*
+### Old Program Design
+* Non-Standard libraries
+    * (pygame)
+    * Pygame
+        * Documentation:  https://www.pygame.org/docs/
+        * This module is used to create the "view" or visuals of the project.
+* Class Interface Design
+    * Main Menu (Screen 1)
+    ![class diagram](etc/old_MVC_screen_1.jpg)
+    * Search Results (Screen 2)
+    ![class diagram](etc/old_MVC_screen_2.jpg)
+    * Movie Details (Screen 3)
+    ![class diagram](etc/old_MVC_screen_3.jpg)
+* Classes
+    * Main Menu
+        * Models 
+            * GenreList - creates a list of movie genres and determines their selection status
+            * GenreChosen - list of selected genres and option to remove genre from list
+            * Select - confirms selection of genres and add them to the list of selected genres
+            * SearchButton - searches for movies based on selected genres
+        * Controller
+            * Search - creates the screen and determines what if a search can be made based on user input
+        * View
+            * Managed by pygame, TBD
+    * Search Results (Screen 2)
+        * Models 
+            * BackButton - goes back to main menu
+            * MoreInfoButton - changes screen to show more information on a movie (goes to screen 3)
+            * SelectButton - adds movie to movie list
+            * ScrollWheel - changes position of screen based on user input
+            * MovieInfo - gets movie information for all recommended movies
+        * Controller
+            * Recommendations - creates screen 2 and determines if buttons are pressed, calls certain class methods depending on the button pressed
+        * View
+            * Managed by pygame, TBD
+    * More Info Screen (Screen 3)
+        * Models 
+            * MoviePage - detailed data of selected movie
+            * ScrollWheel - (same as screen 2)
+            * BackButton - goes back to screen 2
+        * Controller
+            * ExpandedMovieInfo - creates page with movie's rating, description, poster, availability, etc. and checks to see if back button or scroll wheel are pressed
+        * View
+            * Managed by pygame, TBD
+### Updated Program Design
 * Non-Standard libraries
     * pygame
         * Documentation: https://www.pygame.org/docs/
@@ -76,18 +121,18 @@ displayed with their posters, titles, and other relevant data.
         * Documentation: https://docs.python-requests.org/en/latest/user/quickstart/
         * This library is used to make API requests to get movie data
 * Class Interface Design
-    ![class diagram](etc/Class_screen_1.jpg)
+    ![class diagram](etc/updated_final_MVC_diagram.jpg)
 * Classes
     * Model
         * Button
-            * Creates button objects that stores data and has an update method.
+            * Creates button objects that stores data and has an update method that can be used to update its position.
         * APIrequests
             * Used to get data from a movie API and conduct searches with user input received from the controller.
         * APIproxy
             * Used by APIrequests to download images into a temporary folder/directory.
     * Controller
         * Controller(class)
-            * Checks for events and uses the model and view to respond to them.
+            * Checks for events and uses the model and view to respond to them. Also checks for internet connection occasionally and exits the program is there is no connection.
     * View
         * pygame
             * Used to create the visuals
