@@ -24,7 +24,7 @@ displayed with their posters, titles, and other relevant data.
 ***    
 
 ## User Interface Design *(Front End Specialist)*
-* ![class diagram](assets/GUI%20First%20Page.png)
+* ![class diagram](etc/GUI%20First%20Page.png)
 * Main Menu Screen
 * Contains:
 * Selection dropdown box
@@ -32,7 +32,7 @@ displayed with their posters, titles, and other relevant data.
 * Search button
 * Remove button
 * Selectable genres for the movie
-* ![class diagram](assets/GUI%20Second%20Page.png)
+* ![class diagram](etc/GUI%20Second%20Page.png)
 * Second Screen (Recommended movies)
 * Contains:
 * Poster for movies
@@ -40,23 +40,23 @@ displayed with their posters, titles, and other relevant data.
 * Select button
 * Scrolling screen
 * More info button
-* ![class diagram](assets/GUI%20Third%20Page.png)
+* ![class diagram](etc/GUI%20Third%20Page.png)
 * Third Screen (Watchlist add-on)
 * Contains:
 * List of all the movies the user selected
-* ![class diagram](assets/GUI%20Fourth%20Page%20(addon)%20(1).png)
+* ![class diagram](etc/GUI%20Fourth%20Page%20(addon)%20(1).png)
 * Fourth Screen (More info screen)
 * Contains:
 * Information gathered from API about specific movie
 * Also includes the previous back and scroll wheel
-![](assets/UI.png)
+![](etc/UI.png)
 * Main Menu Screen
 * Selection dropdown box
 * Scrolling screen(scroll wheel is wish feature)
 * Search button
 * Remove button
 * Selectable genres for the movie
-![](assets/UI2.png)
+![](etc/UI2.png)
 * Second Screen (Recommended movies)
 * Contains:
 * Poster for movies
@@ -76,7 +76,7 @@ displayed with their posters, titles, and other relevant data.
         * Documentation: https://docs.python-requests.org/en/latest/user/quickstart/
         * This library is used to make API requests to get movie data
 * Class Interface Design
-    ![class diagram](assets/Class_screen_1.jpg)
+    ![class diagram](etc/Class_screen_1.jpg)
 * Classes
     * Model
         * Button
@@ -106,15 +106,15 @@ The Project is broken down into the following file structure:
     * buttonicon.png
     * tmdblogo.png
     * screenlogo.png
-    * UI.png
-    * UI2.png
-    * <class_diagram>
 * etc
     * foldercontents.txt
     * genrebutton.png
     * moviedb.png
     * searchbutton.png
     * selectbutton.png
+    * UI.png
+    * UI2.png
+    * Class_screen_1.jpg
 ***
 
 ## Tasks and Responsibilities *(Software Lead)*
