@@ -14,7 +14,7 @@ class APIrequest:
         '''
         self.user_genres = user_genres
 
-    def api_request(self):
+    def apiRequest(self):
         '''
         Searches for movies with the selected genres
         args: None
@@ -26,7 +26,7 @@ class APIrequest:
         raw_data = json.loads(search_request.text)
         return raw_data
 
-    def get_id(self):
+    def getId(self):
         '''
         Gets the list of dictionaries with each dictionary containing a genre's name and id
         args: None
@@ -39,7 +39,7 @@ class APIrequest:
         # print(genre_id)
         return genre_id
     
-    def get_posters(self, movie_results, tempdir):
+    def getPosters(self, movie_results, tempdir):
         '''
         Retrieves the poster image from the API and saves it to the temporary file
         args:
@@ -55,7 +55,7 @@ class APIrequest:
             APIproxy.MoviePoster(url, tempdir + f'sample{counter}.jpg')
             counter += 1
 
-    def get_providers(self, movie_id):
+    def getProviders(self, movie_id):
         """
         Retrieves the providers that are streaming the movie
         args: (str) movie_id

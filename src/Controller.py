@@ -12,7 +12,7 @@ class Controller:
         return: None
         """
         super().__init__()
-        self.check_internet()
+        self.checkInternet()
         self.width = 1080
         self.height = 720
         self.state = "MAIN"
@@ -26,7 +26,7 @@ class Controller:
         self.user_genre_list = []
         self.user_selected_ids = []
         self.tempdir = tempdir
-        raw_genre_list = APIrequest.APIrequest.get_id(self)
+        raw_genre_list = APIrequest.APIrequest.getId(self)
         # setting up buttons
         x_pos = 467
         y_pos = 0
@@ -55,7 +55,7 @@ class Controller:
                 self.firstScreenLoop()
             elif self.state == "SECOND":
                 self.secondScreenLoop()
-            self.check_internet()
+            self.checkInternet()
 
     def firstScreenLoop(self):
         """
@@ -139,7 +139,7 @@ class Controller:
         y_pos_screen = 0 #y position for screen
         current_iter = 0
         movie_data = APIrequest.APIrequest(self.user_selected_ids)
-        results = movie_data.api_request()
+        results = movie_data.apiRequest()
         results_list = results['results']
         provider_list = []
         for button in self.google_search_button:
@@ -147,14 +147,14 @@ class Controller:
         for movie in results_list:
             current_iter += 1
             temp_movie_id = movie['id']
-            temp_providers = APIrequest.APIrequest.get_providers(self, temp_movie_id)
+            temp_providers = APIrequest.APIrequest.getProviders(self, temp_movie_id)
             provider_list.append(temp_providers)
             button = Button.Button(x_pos, y_pos, 'assets/buttonicon.png', 1, "Google Search", movie['title'])
             y_pos += 325    #if poster_y_pos changes, change this value by the same amount
             self.google_search_button.add(button)
         # print(provider_list)
         directory = f'assets/{self.tempdir}/'
-        movie_data.get_posters(results, directory)
+        movie_data.getPosters(results, directory)
         while self.state == "SECOND":
             #check for events
             y_offset = 0
@@ -268,7 +268,7 @@ class Controller:
             #redraw
             pygame.display.flip()
 
-    def check_internet(self):
+    def checkInternet(self):
         """
         Checks if the user has an internet connection, or if there is an issue with the API. For constant checking this
         function needs to be put in a while loop.
