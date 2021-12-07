@@ -7,7 +7,7 @@
 
 [https://github.com/bucs110a0fall21/final-project-cinemadata](#)
 
-<< [link to demo presentation slides](#) >>
+[https://docs.google.com/presentation/d/12Tb9pJZSVkh1yvmBxMbkxDWFgUyJRNiqf-J5I8sy3Go/edit?usp=sharing](#)
 
 ### Team: CinemaData
 #### Daniel Zheng, Wilson Huang, Kevin Wu
