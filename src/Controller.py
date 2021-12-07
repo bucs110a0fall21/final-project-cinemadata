@@ -1,6 +1,7 @@
 import pygame
 import sys
 import webbrowser
+import requests
 from src import Button
 from src import APIrequest
 class Controller:
@@ -11,6 +12,7 @@ class Controller:
         return: None
         """
         super().__init__()
+        self.check_internet()
         self.width = 1080
         self.height = 720
         self.state = "MAIN"
@@ -53,6 +55,7 @@ class Controller:
                 self.firstScreenLoop()
             elif self.state == "SECOND":
                 self.secondScreenLoop()
+            self.check_internet()
 
     def firstScreenLoop(self):
         """
@@ -264,3 +267,23 @@ class Controller:
             self.google_search_button.draw(self.screen)
             #redraw
             pygame.display.flip()
+
+    def check_internet(self):
+        """
+        Checks if the user has an internet connection, or if there is an issue with the API. For constant checking this
+        function needs to be put in a while loop.
+        args: None
+        return: None
+        """
+        try:
+            result = requests.get("https://api.themoviedb.org/3/discover/movie?",
+                                  params={'api_key': 'ae2a71b3aac0b67e745c46b2ff92ecb9', 'with_genres': 18,
+                                          'language': 'en-US'})
+            if result.status_code != 200:
+                print("If you are connected to the internet, try again later")
+                sys.exit()
+            else:
+                pass
+        except:
+            print("Please Connect to the Internet")
+            sys.exit()
