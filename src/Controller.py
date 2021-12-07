@@ -26,6 +26,7 @@ class Controller:
         self.user_genre_list = []
         self.user_selected_ids = []
         self.tempdir = tempdir
+        self.connection_event = pygame.USEREVENT
         raw_genre_list = APIrequest.APIrequest.getId(self)
         # setting up buttons
         x_pos = 467
@@ -51,6 +52,7 @@ class Controller:
         return: None
         """
         while self.state:
+            pygame.time.set_timer(self.connection_event, 3000)
             if self.state == "MAIN":
                 self.firstScreenLoop()
             elif self.state == "SECOND":
@@ -68,9 +70,12 @@ class Controller:
         while self.state == "MAIN":
             y_offset = 0
             #checking for events
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                if event.type == self.connection_event:
+                    self.checkInternet()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     #scrolling
                     if event.button == 4 and self.y_limit > 0:
@@ -161,6 +166,8 @@ class Controller:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                if event.type == self.connection_event:
+                    self.checkInternet()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     #exit button
                     if self.exit_button.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0] == 1:
