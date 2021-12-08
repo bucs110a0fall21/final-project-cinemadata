@@ -6,11 +6,6 @@ from src import Button
 from src import APIrequest
 class Controller:
     def __init__(self, tempdir):
-        """
-        Creates all objects in the program
-        args: (str) tempdir
-        return: None
-        """
         super().__init__()
         self.checkInternet()
         self.width = 1080

@@ -2,17 +2,6 @@ import pygame
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, x, y, img_file, scale, label, genre = None, id = None):
-        '''
-        Assigns all initial values to a button object and creates its image
-        args:
-            (int) x - x pos of button
-            (int) y - y pos of button
-            (int) img_file - image file that gets loaded
-            (str) label - text that goes on top of the image
-            (str) genre - movie genre if it is a genre button
-            (int) id - genre id of the genre
-        return: None
-        '''
         super().__init__()
         #rectangle and surface
         self.image = pygame.image.load(img_file).convert_alpha()

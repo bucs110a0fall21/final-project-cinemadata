@@ -7,11 +7,6 @@ class APIrequest:
     #we would use this as a way to store selected genres and it would involve taking values from genre buttons
 
     def __init__(self, user_genres):
-        '''
-        Saves the current list of selected genres to the object
-        args: (list) user_genres - list of genre ids that will be sent to the api
-        return: None
-        '''
         self.user_genres = user_genres
 
     def apiRequest(self):
