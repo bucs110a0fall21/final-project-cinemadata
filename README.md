@@ -173,7 +173,7 @@ into the GUI for the first and second screens.
 
 ### Front End Specialist - Wilson Huang
 
-Created controller class, set up the first and second screen loops, and worked with the back end specialist to integrate 
+Created controller class, created assets using photoshop, set up the first and second screen loops, and worked with the back end specialist to integrate 
 models into the GUI.
 
 ### Back End Specialist - Daniel Zheng
